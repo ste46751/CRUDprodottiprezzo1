@@ -18,7 +18,7 @@ namespace CRUDprodottiprezzo
             public float Prezzo;
         }
         public Prodotto[] p;
-        public int dim = 0;
+        public int dim = 100;
         public Form1()
         {
             InitializeComponent();
