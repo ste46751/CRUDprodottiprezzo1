@@ -18,18 +18,14 @@ namespace CRUDprodottiprezzo
             public float Prezzo;
         }
         public Prodotto[] p;
-        public int dim = 100;
+
+        public int dim;
         public Form1()
         {
             InitializeComponent();
+            p = new Prodotto[100];
+            dim = 0;    
         }
-        public string Scrivi(Prodotto p)
-        {
-            
-            
-            
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -37,6 +33,20 @@ namespace CRUDprodottiprezzo
 
         private void bttn_aggiungi_Click(object sender, EventArgs e)
         {
+            if(txt_nome.Text!=null || txt_prezzo!=null)
+            {
+                p[dim].Nome=txt_nome.Text;
+                p[dim].Prezzo=Convert.ToInt32(txt_prezzo.Text);
+
+                txt_nome.Text=(" ");
+                txt_prezzo.Text=(" ");
+
+                dim++;
+            }
+            else
+            {
+                Console.WriteLine("Celle piene");
+            }
 
         }
     }
