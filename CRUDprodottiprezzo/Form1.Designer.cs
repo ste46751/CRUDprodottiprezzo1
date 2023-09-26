@@ -34,6 +34,7 @@
             this.txt_prezzo = new System.Windows.Forms.TextBox();
             this.bttn_aggiungi = new System.Windows.Forms.Button();
             this.bttn_visuallizza = new System.Windows.Forms.Button();
+            this.lst_visual = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lbl_nome
@@ -62,7 +63,7 @@
             // txt_nome
             // 
             this.txt_nome.Location = new System.Drawing.Point(18, 50);
-            this.txt_nome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_nome.Margin = new System.Windows.Forms.Padding(2);
             this.txt_nome.Name = "txt_nome";
             this.txt_nome.Size = new System.Drawing.Size(76, 20);
             this.txt_nome.TabIndex = 2;
@@ -70,7 +71,7 @@
             // txt_prezzo
             // 
             this.txt_prezzo.Location = new System.Drawing.Point(18, 102);
-            this.txt_prezzo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_prezzo.Margin = new System.Windows.Forms.Padding(2);
             this.txt_prezzo.Name = "txt_prezzo";
             this.txt_prezzo.Size = new System.Drawing.Size(76, 20);
             this.txt_prezzo.TabIndex = 3;
@@ -78,7 +79,7 @@
             // bttn_aggiungi
             // 
             this.bttn_aggiungi.Location = new System.Drawing.Point(18, 134);
-            this.bttn_aggiungi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bttn_aggiungi.Margin = new System.Windows.Forms.Padding(2);
             this.bttn_aggiungi.Name = "bttn_aggiungi";
             this.bttn_aggiungi.Size = new System.Drawing.Size(89, 29);
             this.bttn_aggiungi.TabIndex = 4;
@@ -94,19 +95,29 @@
             this.bttn_visuallizza.TabIndex = 5;
             this.bttn_visuallizza.Text = "Visualizza";
             this.bttn_visuallizza.UseVisualStyleBackColor = true;
+            this.bttn_visuallizza.Click += new System.EventHandler(this.bttn_visuallizza_Click);
+            // 
+            // lst_visual
+            // 
+            this.lst_visual.FormattingEnabled = true;
+            this.lst_visual.Location = new System.Drawing.Point(348, 41);
+            this.lst_visual.Name = "lst_visual";
+            this.lst_visual.Size = new System.Drawing.Size(180, 225);
+            this.lst_visual.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Controls.Add(this.lst_visual);
             this.Controls.Add(this.bttn_visuallizza);
             this.Controls.Add(this.bttn_aggiungi);
             this.Controls.Add(this.txt_prezzo);
             this.Controls.Add(this.txt_nome);
             this.Controls.Add(this.lbl_prezzo);
             this.Controls.Add(this.lbl_nome);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -122,6 +133,7 @@
         private System.Windows.Forms.TextBox txt_prezzo;
         private System.Windows.Forms.Button bttn_aggiungi;
         private System.Windows.Forms.Button bttn_visuallizza;
+        private System.Windows.Forms.ListBox lst_visual;
     }
 }
 
