@@ -27,7 +27,18 @@ namespace CRUDprodottiprezzo
             InitializeComponent();
             dim = 0;   
             p = new Prodotto[100];
-             
+
+            txt_modprezzo.Visible = false;
+            lbl_modprezzo.Visible = false;
+            txt_modnome.Visible = false;
+            lbl_modnome.Visible = false;
+            txt_prodottomod.Visible = false;
+            lbl_vecchio.Visible = false;
+
+            bttn_confermamod.Visible = false;
+            bttn_cerca.Visible = false;
+            
+
         }
         private void label1_Click(object sender, EventArgs e)
         {
@@ -62,5 +73,76 @@ namespace CRUDprodottiprezzo
             }
 
         }
+
+        private void lbl_prezzo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //MOSTRA LA CELLE E I LABEL
+        private void bttn_modifica_Click(object sender, EventArgs e)
+        {
+            txt_modprezzo.Visible = true;
+            lbl_modprezzo.Visible = true;
+            txt_modnome.Visible = true;
+            lbl_modnome.Visible = true;
+            txt_prodottomod.Visible = true;
+            lbl_vecchio.Visible = true;
+
+            bttn_confermamod.Visible = true;
+            bttn_cerca.Visible = true;
+
+            txt_prezzo.Enabled = false;
+            txt_nome.Enabled = false;
+
+        }
+        private void bttn_cerca_Click(object sender, EventArgs e)
+        {
+            string prodottomod = txt_prodottomod.Text;
+
+            for (int i = 0; i < dim; i++)
+            {
+                if (p[i].Nome == prodottomod)
+                {
+                    txt_modnome.Text = p[i].Nome;
+                    txt_modprezzo.Text = (p[i].Prezzo).ToString();
+                }
+                else
+                { }
+            }
+            txt_prodottomod.Enabled = false;   
+        }
+        //PULSANTE CHE SALVA LE MODIFICHE
+        private void bttn_confermamod_Click(object sender, EventArgs e)
+        {
+            string prodottomod = txt_prodottomod.Text;
+
+            for (int i = 0; i < dim; i++)
+            {
+                
+                    p[i].Nome = txt_modnome.Text;
+                    p[i].Prezzo = Convert.ToInt32(txt_modprezzo.Text);
+                
+            }
+            txt_modprezzo.Visible = false;
+            lbl_modprezzo.Visible = false;
+            txt_modnome.Visible = false;
+            lbl_modnome.Visible = false;
+            txt_prodottomod.Visible = false;
+            lbl_vecchio.Visible = false;
+
+            bttn_confermamod.Visible = false;
+            bttn_cerca.Visible = false;
+
+            txt_prezzo.Enabled = true;
+            txt_nome.Enabled = true;
+            txt_prodottomod.Enabled = true;
+        }
+        private void txt_modnome_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

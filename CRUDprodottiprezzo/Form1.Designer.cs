@@ -35,6 +35,16 @@
             this.bttn_aggiungi = new System.Windows.Forms.Button();
             this.bttn_visuallizza = new System.Windows.Forms.Button();
             this.lst_visual = new System.Windows.Forms.ListBox();
+            this.bttn_modifica = new System.Windows.Forms.Button();
+            this.txt_modnome = new System.Windows.Forms.TextBox();
+            this.lbl_modnome = new System.Windows.Forms.Label();
+            this.txt_modprezzo = new System.Windows.Forms.TextBox();
+            this.lbl_modprezzo = new System.Windows.Forms.Label();
+            this.txt_prodottomod = new System.Windows.Forms.TextBox();
+            this.bttn_confermamod = new System.Windows.Forms.Button();
+            this.lbl_vecchio = new System.Windows.Forms.Label();
+            this.bttn_cerca = new System.Windows.Forms.Button();
+            this.lbl_aiuto = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_nome
@@ -52,13 +62,14 @@
             // lbl_prezzo
             // 
             this.lbl_prezzo.AutoSize = true;
-            this.lbl_prezzo.Location = new System.Drawing.Point(16, 86);
+            this.lbl_prezzo.Location = new System.Drawing.Point(211, 35);
             this.lbl_prezzo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_prezzo.Name = "lbl_prezzo";
             this.lbl_prezzo.Size = new System.Drawing.Size(42, 13);
             this.lbl_prezzo.TabIndex = 1;
             this.lbl_prezzo.Text = "Prezzo:";
             this.lbl_prezzo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.lbl_prezzo.Click += new System.EventHandler(this.lbl_prezzo_Click);
             // 
             // txt_nome
             // 
@@ -70,7 +81,7 @@
             // 
             // txt_prezzo
             // 
-            this.txt_prezzo.Location = new System.Drawing.Point(18, 102);
+            this.txt_prezzo.Location = new System.Drawing.Point(214, 50);
             this.txt_prezzo.Margin = new System.Windows.Forms.Padding(2);
             this.txt_prezzo.Name = "txt_prezzo";
             this.txt_prezzo.Size = new System.Drawing.Size(76, 20);
@@ -78,7 +89,7 @@
             // 
             // bttn_aggiungi
             // 
-            this.bttn_aggiungi.Location = new System.Drawing.Point(18, 134);
+            this.bttn_aggiungi.Location = new System.Drawing.Point(17, 102);
             this.bttn_aggiungi.Margin = new System.Windows.Forms.Padding(2);
             this.bttn_aggiungi.Name = "bttn_aggiungi";
             this.bttn_aggiungi.Size = new System.Drawing.Size(89, 29);
@@ -89,7 +100,7 @@
             // 
             // bttn_visuallizza
             // 
-            this.bttn_visuallizza.Location = new System.Drawing.Point(19, 168);
+            this.bttn_visuallizza.Location = new System.Drawing.Point(123, 102);
             this.bttn_visuallizza.Name = "bttn_visuallizza";
             this.bttn_visuallizza.Size = new System.Drawing.Size(88, 29);
             this.bttn_visuallizza.TabIndex = 5;
@@ -100,16 +111,124 @@
             // lst_visual
             // 
             this.lst_visual.FormattingEnabled = true;
-            this.lst_visual.Location = new System.Drawing.Point(348, 41);
+            this.lst_visual.Location = new System.Drawing.Point(689, 35);
             this.lst_visual.Name = "lst_visual";
-            this.lst_visual.Size = new System.Drawing.Size(180, 225);
+            this.lst_visual.Size = new System.Drawing.Size(221, 277);
             this.lst_visual.TabIndex = 6;
+            // 
+            // bttn_modifica
+            // 
+            this.bttn_modifica.Location = new System.Drawing.Point(18, 159);
+            this.bttn_modifica.Name = "bttn_modifica";
+            this.bttn_modifica.Size = new System.Drawing.Size(88, 29);
+            this.bttn_modifica.TabIndex = 7;
+            this.bttn_modifica.Text = "Modifica";
+            this.bttn_modifica.UseVisualStyleBackColor = true;
+            this.bttn_modifica.Click += new System.EventHandler(this.bttn_modifica_Click);
+            // 
+            // txt_modnome
+            // 
+            this.txt_modnome.Location = new System.Drawing.Point(382, 164);
+            this.txt_modnome.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_modnome.Name = "txt_modnome";
+            this.txt_modnome.Size = new System.Drawing.Size(76, 20);
+            this.txt_modnome.TabIndex = 9;
+            this.txt_modnome.TextChanged += new System.EventHandler(this.txt_modnome_TextChanged);
+            // 
+            // lbl_modnome
+            // 
+            this.lbl_modnome.AutoSize = true;
+            this.lbl_modnome.Location = new System.Drawing.Point(379, 149);
+            this.lbl_modnome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_modnome.Name = "lbl_modnome";
+            this.lbl_modnome.Size = new System.Drawing.Size(71, 13);
+            this.lbl_modnome.TabIndex = 8;
+            this.lbl_modnome.Text = "Nuovo nome:";
+            this.lbl_modnome.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // txt_modprezzo
+            // 
+            this.txt_modprezzo.Location = new System.Drawing.Point(481, 164);
+            this.txt_modprezzo.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_modprezzo.Name = "txt_modprezzo";
+            this.txt_modprezzo.Size = new System.Drawing.Size(76, 20);
+            this.txt_modprezzo.TabIndex = 11;
+            // 
+            // lbl_modprezzo
+            // 
+            this.lbl_modprezzo.AutoSize = true;
+            this.lbl_modprezzo.Location = new System.Drawing.Point(481, 149);
+            this.lbl_modprezzo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_modprezzo.Name = "lbl_modprezzo";
+            this.lbl_modprezzo.Size = new System.Drawing.Size(76, 13);
+            this.lbl_modprezzo.TabIndex = 10;
+            this.lbl_modprezzo.Text = "Nuovo prezzo:";
+            this.lbl_modprezzo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // txt_prodottomod
+            // 
+            this.txt_prodottomod.Location = new System.Drawing.Point(123, 164);
+            this.txt_prodottomod.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_prodottomod.Name = "txt_prodottomod";
+            this.txt_prodottomod.Size = new System.Drawing.Size(153, 20);
+            this.txt_prodottomod.TabIndex = 12;
+            // 
+            // bttn_confermamod
+            // 
+            this.bttn_confermamod.Location = new System.Drawing.Point(579, 155);
+            this.bttn_confermamod.Name = "bttn_confermamod";
+            this.bttn_confermamod.Size = new System.Drawing.Size(88, 36);
+            this.bttn_confermamod.TabIndex = 13;
+            this.bttn_confermamod.Text = "Conferma le modifiche";
+            this.bttn_confermamod.UseVisualStyleBackColor = true;
+            this.bttn_confermamod.Click += new System.EventHandler(this.bttn_confermamod_Click);
+            // 
+            // lbl_vecchio
+            // 
+            this.lbl_vecchio.AutoSize = true;
+            this.lbl_vecchio.Location = new System.Drawing.Point(120, 149);
+            this.lbl_vecchio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_vecchio.Name = "lbl_vecchio";
+            this.lbl_vecchio.Size = new System.Drawing.Size(166, 13);
+            this.lbl_vecchio.TabIndex = 14;
+            this.lbl_vecchio.Text = " Nome del prodotto da modificare:";
+            this.lbl_vecchio.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // bttn_cerca
+            // 
+            this.bttn_cerca.Location = new System.Drawing.Point(291, 164);
+            this.bttn_cerca.Name = "bttn_cerca";
+            this.bttn_cerca.Size = new System.Drawing.Size(54, 24);
+            this.bttn_cerca.TabIndex = 15;
+            this.bttn_cerca.Text = "Cerca";
+            this.bttn_cerca.UseVisualStyleBackColor = true;
+            this.bttn_cerca.Click += new System.EventHandler(this.bttn_cerca_Click);
+            // 
+            // lbl_aiuto
+            // 
+            this.lbl_aiuto.AutoSize = true;
+            this.lbl_aiuto.ForeColor = System.Drawing.Color.Red;
+            this.lbl_aiuto.Location = new System.Drawing.Point(260, 110);
+            this.lbl_aiuto.Name = "lbl_aiuto";
+            this.lbl_aiuto.Size = new System.Drawing.Size(361, 13);
+            this.lbl_aiuto.TabIndex = 16;
+            this.lbl_aiuto.Text = "*dopo aver fatto delle modifiche cliccare su Visualizza per vederle nella lista";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(950, 480);
+            this.Controls.Add(this.lbl_aiuto);
+            this.Controls.Add(this.bttn_cerca);
+            this.Controls.Add(this.lbl_vecchio);
+            this.Controls.Add(this.bttn_confermamod);
+            this.Controls.Add(this.txt_prodottomod);
+            this.Controls.Add(this.txt_modprezzo);
+            this.Controls.Add(this.lbl_modprezzo);
+            this.Controls.Add(this.txt_modnome);
+            this.Controls.Add(this.lbl_modnome);
+            this.Controls.Add(this.bttn_modifica);
             this.Controls.Add(this.lst_visual);
             this.Controls.Add(this.bttn_visuallizza);
             this.Controls.Add(this.bttn_aggiungi);
@@ -134,6 +253,16 @@
         private System.Windows.Forms.Button bttn_aggiungi;
         private System.Windows.Forms.Button bttn_visuallizza;
         private System.Windows.Forms.ListBox lst_visual;
+        private System.Windows.Forms.Button bttn_modifica;
+        private System.Windows.Forms.TextBox txt_modnome;
+        private System.Windows.Forms.Label lbl_modnome;
+        private System.Windows.Forms.TextBox txt_modprezzo;
+        private System.Windows.Forms.Label lbl_modprezzo;
+        private System.Windows.Forms.TextBox txt_prodottomod;
+        private System.Windows.Forms.Button bttn_confermamod;
+        private System.Windows.Forms.Label lbl_vecchio;
+        private System.Windows.Forms.Button bttn_cerca;
+        private System.Windows.Forms.Label lbl_aiuto;
     }
 }
 
