@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static CRUDprodottiprezzo.Form1;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace CRUDprodottiprezzo
 {
@@ -30,9 +31,8 @@ namespace CRUDprodottiprezzo
             p = new Prodotto[100];
 
             dim = 0;
-            //comandi Visibile per l'interfaccia grafica, che vanno a nascondere celle quando non servono
 
-
+            //comandi Visibile per l'interfaccia grafica del PULSANTE MODIFICA, che vanno a nascondere celle quando non servono
 
             txt_modprezzo.Visible = false;
             lbl_modprezzo.Visible = false;
@@ -43,6 +43,11 @@ namespace CRUDprodottiprezzo
 
             bttn_confermamod.Visible = false;
             bttn_cerca.Visible = false;
+
+            //comandi Visibile per l'interfaccia grafica del PULSANTE MODIFICA, che vanno a nascondere celle quando non servono
+            lbl_eliminaprod.Visible = false;
+            txt_elimina.Visible = false;
+            btt_confermaelimina.Visible = false;
 
 
         }
@@ -95,13 +100,6 @@ namespace CRUDprodottiprezzo
 
 
         //Bottone modifica che fa apparire oggeti per le modifiche prima nascoste
-
-        private void lbl_prezzo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        //MOSTRA LA CELLE E I LABEL
         private void bttn_modifica_Click(object sender, EventArgs e)
         {
             txt_modprezzo.Visible = true;
@@ -126,12 +124,14 @@ namespace CRUDprodottiprezzo
         private void bttn_cerca_Click(object sender, EventArgs e)
         {
             string prodottomod = txt_prodottomod.Text;
+            //if che controlla se la cella è vuota
             if (String.IsNullOrEmpty(txt_prodottomod.Text))
             {
                 MessageBox.Show("Per modificare devi inserire il nome di un prodotto");
             }
             else
             {
+                //ciclo for per cercare il prodotto e stampare l'attuale nome e prezzo
                 for (int i = 0; i < dim; i++)
                 {
                     if (prodottomod == p[i].Nome)
@@ -154,12 +154,14 @@ namespace CRUDprodottiprezzo
         private void bttn_confermamod_Click(object sender, EventArgs e)
         {
             string prodottomod = txt_prodottomod.Text;
+            //if che controlla se le celle sono vuote
             if (String.IsNullOrEmpty(txt_modnome.Text) || String.IsNullOrEmpty(txt_modprezzo.Text))
             {
                 MessageBox.Show("Per continuare le modifiche devi inserire qualcosa nelle text box");
             }
             else
             {
+                //ciclo for per modificare i vecchi contenuti 
                 for (int i = 0; i < dim; i++)
                 {
                     if (prodottomod == p[i].Nome)
@@ -170,6 +172,7 @@ namespace CRUDprodottiprezzo
 
                 }
 
+                //svuotamento delle celle
                 txt_modnome.Text = ("");
                 txt_modprezzo.Text = ("");
 
@@ -189,72 +192,57 @@ namespace CRUDprodottiprezzo
                 bttn_visuallizza.Enabled = true;
                 txt_prodottomod.Enabled = true;
             }
-
-
-
-
-
         }
-        /*private void bttn_cerca_Click(object sender, EventArgs e)
+        private void bttn_eliminia_Click(object sender, EventArgs e)
         {
-            string prodottomod = txt_prodottomod.Text;
+            lbl_eliminaprod.Visible = true;
+            txt_elimina.Visible = true;
+            btt_confermaelimina.Visible = true;
+        }
 
-            for (int i = 0; i < dim; i++)
+        private void btt_confermaelimina_Click(object sender, EventArgs e)
+        {
+            string prodelim = txt_elimina.Text;
+            //if che controlla se la cella è vuota
+            if (String.IsNullOrEmpty(txt_elimina.Text))
             {
-                if (p[i].Nome == prodottomod)
+                MessageBox.Show("Per continuare le modifiche devi inserire qualcosa nelle text box");
+            }
+            else
+            {
+                //ciclo for che cerca il prodotto da eliminare
+                for (int i = 0; i < dim; i++)
                 {
-                    txt_modnome.Text = p[i].Nome;
-                    txt_modprezzo.Text = (p[i].Prezzo).ToString();
+                    if (prodelim == p[i].Nome)
+                    {
+                        //messaggio che chiede la conferma dell'eliminazione
+                        const string message ="Eliminare il prodotto?";
+                        const string caption = "Form Closing";
+                        var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                        if (result == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            p[i].Nome = "";
+                            p[i].Prezzo = 0;
+
+                            dim--;
+                        }
+                        else
+                        {
+                            lbl_eliminaprod.Visible = false;
+                            txt_elimina.Visible = false;
+                            btt_confermaelimina.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Prodotto non presente nella lista, controlla di averlo scritto correttamente");
+                    }
+
                 }
-                else
-                { }
+
+                txt_elimina.Text = "";
+
             }
-            txt_prodottomod.Enabled = false;   
         }
-        //PULSANTE CHE SALVA LE MODIFICHE
-        private void bttn_confermamod_Click(object sender, EventArgs e)
-        {
-            string prodottomod = txt_prodottomod.Text;
-
-            for (int i = 0; i < dim; i++)
-            {
-                
-                    p[i].Nome = txt_modnome.Text;
-                    p[i].Prezzo = Convert.ToInt32(txt_modprezzo.Text);
-                
-            }
-            txt_modprezzo.Visible = false;
-            lbl_modprezzo.Visible = false;
-            txt_modnome.Visible = false;
-            lbl_modnome.Visible = false;
-            txt_prodottomod.Visible = false;
-            lbl_vecchio.Visible = false;
-
-            bttn_confermamod.Visible = false;
-            bttn_cerca.Visible = false;
-
-            txt_prezzo.Enabled = true;
-            txt_nome.Enabled = true;
-            txt_prodottomod.Enabled = true;
-
-        }*/
-        private void txt_modnome_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void lst_visual_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        /*private void lbl_prezzo_Click(object sender, EventArgs e)
-        {
-
-        }*/
-
-
-
     }
 }
