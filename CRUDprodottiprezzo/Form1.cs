@@ -49,6 +49,8 @@ namespace CRUDprodottiprezzo
             txt_elimina.Visible = false;
             btt_confermaelimina.Visible = false;
 
+            bttn_annulla.Visible = false;
+
 
         }
         private void label1_Click(object sender, EventArgs e)
@@ -117,6 +119,8 @@ namespace CRUDprodottiprezzo
 
             bttn_aggiungi.Enabled = false;
             bttn_visuallizza.Enabled = false;
+
+            bttn_annulla.Visible = true;
 
         }
 
@@ -198,6 +202,8 @@ namespace CRUDprodottiprezzo
             lbl_eliminaprod.Visible = true;
             txt_elimina.Visible = true;
             btt_confermaelimina.Visible = true;
+
+            bttn_annulla.Visible = true;
         }
 
         private void btt_confermaelimina_Click(object sender, EventArgs e)
@@ -221,7 +227,7 @@ namespace CRUDprodottiprezzo
                         var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo,MessageBoxIcon.Question);
                         if (result == System.Windows.Forms.DialogResult.Yes)
                         {
-                            p[i].Nome = "";
+                            p[i].Nome = null;
                             p[i].Prezzo = 0;
 
                             dim--;
@@ -243,6 +249,32 @@ namespace CRUDprodottiprezzo
                 txt_elimina.Text = "";
 
             }
+        }
+        private void bttn_annulla_Click(object sender, EventArgs e)
+        {
+            txt_modprezzo.Visible = false;
+            lbl_modprezzo.Visible = false;
+            txt_modnome.Visible = false;
+            lbl_modnome.Visible = false;
+            txt_prodottomod.Visible = false;
+            lbl_vecchio.Visible = false;
+            bttn_cerca.Visible = false;
+            bttn_confermamod.Visible = false;
+            bttn_annulla.Visible = false;
+
+            bttn_confermamod.Visible = false;
+            bttn_cerca.Visible = false;
+            txt_prezzo.Enabled = true;
+            txt_nome.Enabled = true;
+            bttn_aggiungi.Enabled = true;
+            bttn_visuallizza.Enabled = true;
+            bttn_elimina.Enabled = true;
+            txt_prodottomod.Enabled = true;
+        }
+
+        private void bttn_OrdAlf_Click(object sender, EventArgs e)
+        {
+            //ordina utilizzando il CompareTo
         }
     }
 }

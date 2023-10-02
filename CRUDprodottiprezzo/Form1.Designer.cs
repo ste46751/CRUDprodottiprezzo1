@@ -48,15 +48,18 @@
             this.btt_confermaelimina = new System.Windows.Forms.Button();
             this.lbl_eliminaprod = new System.Windows.Forms.Label();
             this.txt_elimina = new System.Windows.Forms.TextBox();
-            this.bttn_eliminia = new System.Windows.Forms.Button();
+            this.bttn_elimina = new System.Windows.Forms.Button();
+            this.bttn_annulla = new System.Windows.Forms.Button();
+            this.bttn_OrdAlf = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_nome
             // 
             this.lbl_nome.AutoSize = true;
-            this.lbl_nome.Location = new System.Drawing.Point(21, 43);
+            this.lbl_nome.Location = new System.Drawing.Point(16, 35);
+            this.lbl_nome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_nome.Name = "lbl_nome";
-            this.lbl_nome.Size = new System.Drawing.Size(47, 16);
+            this.lbl_nome.Size = new System.Drawing.Size(38, 13);
             this.lbl_nome.TabIndex = 0;
             this.lbl_nome.Text = "Nome:";
             this.lbl_nome.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -65,35 +68,36 @@
             // lbl_prezzo
             // 
             this.lbl_prezzo.AutoSize = true;
-            this.lbl_prezzo.Location = new System.Drawing.Point(281, 43);
+            this.lbl_prezzo.Location = new System.Drawing.Point(211, 35);
+            this.lbl_prezzo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_prezzo.Name = "lbl_prezzo";
-            this.lbl_prezzo.Size = new System.Drawing.Size(51, 16);
+            this.lbl_prezzo.Size = new System.Drawing.Size(42, 13);
             this.lbl_prezzo.TabIndex = 1;
             this.lbl_prezzo.Text = "Prezzo:";
             this.lbl_prezzo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // txt_nome
             // 
-            this.txt_nome.Location = new System.Drawing.Point(24, 62);
-            this.txt_nome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txt_nome.Location = new System.Drawing.Point(18, 50);
+            this.txt_nome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_nome.Name = "txt_nome";
-            this.txt_nome.Size = new System.Drawing.Size(100, 22);
+            this.txt_nome.Size = new System.Drawing.Size(76, 20);
             this.txt_nome.TabIndex = 2;
             // 
             // txt_prezzo
             // 
-            this.txt_prezzo.Location = new System.Drawing.Point(285, 62);
-            this.txt_prezzo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txt_prezzo.Location = new System.Drawing.Point(214, 50);
+            this.txt_prezzo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_prezzo.Name = "txt_prezzo";
-            this.txt_prezzo.Size = new System.Drawing.Size(100, 22);
+            this.txt_prezzo.Size = new System.Drawing.Size(76, 20);
             this.txt_prezzo.TabIndex = 3;
             // 
             // bttn_aggiungi
             // 
-            this.bttn_aggiungi.Location = new System.Drawing.Point(23, 126);
-            this.bttn_aggiungi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bttn_aggiungi.Location = new System.Drawing.Point(17, 102);
+            this.bttn_aggiungi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bttn_aggiungi.Name = "bttn_aggiungi";
-            this.bttn_aggiungi.Size = new System.Drawing.Size(119, 36);
+            this.bttn_aggiungi.Size = new System.Drawing.Size(89, 29);
             this.bttn_aggiungi.TabIndex = 4;
             this.bttn_aggiungi.Text = "Aggiungi";
             this.bttn_aggiungi.UseVisualStyleBackColor = true;
@@ -101,10 +105,9 @@
             // 
             // bttn_visuallizza
             // 
-            this.bttn_visuallizza.Location = new System.Drawing.Point(164, 126);
-            this.bttn_visuallizza.Margin = new System.Windows.Forms.Padding(4);
+            this.bttn_visuallizza.Location = new System.Drawing.Point(123, 102);
             this.bttn_visuallizza.Name = "bttn_visuallizza";
-            this.bttn_visuallizza.Size = new System.Drawing.Size(117, 36);
+            this.bttn_visuallizza.Size = new System.Drawing.Size(88, 29);
             this.bttn_visuallizza.TabIndex = 5;
             this.bttn_visuallizza.Text = "Visualizza";
             this.bttn_visuallizza.UseVisualStyleBackColor = true;
@@ -113,19 +116,16 @@
             // lst_visual
             // 
             this.lst_visual.FormattingEnabled = true;
-            this.lst_visual.ItemHeight = 16;
-            this.lst_visual.Location = new System.Drawing.Point(919, 43);
-            this.lst_visual.Margin = new System.Windows.Forms.Padding(4);
+            this.lst_visual.Location = new System.Drawing.Point(689, 35);
             this.lst_visual.Name = "lst_visual";
-            this.lst_visual.Size = new System.Drawing.Size(293, 340);
+            this.lst_visual.Size = new System.Drawing.Size(221, 277);
             this.lst_visual.TabIndex = 6;
             // 
             // bttn_modifica
             // 
-            this.bttn_modifica.Location = new System.Drawing.Point(24, 196);
-            this.bttn_modifica.Margin = new System.Windows.Forms.Padding(4);
+            this.bttn_modifica.Location = new System.Drawing.Point(18, 159);
             this.bttn_modifica.Name = "bttn_modifica";
-            this.bttn_modifica.Size = new System.Drawing.Size(117, 36);
+            this.bttn_modifica.Size = new System.Drawing.Size(88, 29);
             this.bttn_modifica.TabIndex = 7;
             this.bttn_modifica.Text = "Modifica";
             this.bttn_modifica.UseVisualStyleBackColor = true;
@@ -133,53 +133,55 @@
             // 
             // txt_modnome
             // 
-            this.txt_modnome.Location = new System.Drawing.Point(508, 203);
+            this.txt_modnome.Location = new System.Drawing.Point(381, 165);
+            this.txt_modnome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_modnome.Name = "txt_modnome";
-            this.txt_modnome.Size = new System.Drawing.Size(100, 22);
+            this.txt_modnome.Size = new System.Drawing.Size(76, 20);
             this.txt_modnome.TabIndex = 22;
             // 
             // lbl_modnome
             // 
             this.lbl_modnome.AutoSize = true;
-            this.lbl_modnome.Location = new System.Drawing.Point(505, 183);
+            this.lbl_modnome.Location = new System.Drawing.Point(379, 149);
+            this.lbl_modnome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_modnome.Name = "lbl_modnome";
-            this.lbl_modnome.Size = new System.Drawing.Size(87, 16);
+            this.lbl_modnome.Size = new System.Drawing.Size(71, 13);
             this.lbl_modnome.TabIndex = 8;
             this.lbl_modnome.Text = "Nuovo nome:";
             this.lbl_modnome.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // txt_modprezzo
             // 
-            this.txt_modprezzo.Location = new System.Drawing.Point(641, 202);
-            this.txt_modprezzo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txt_modprezzo.Location = new System.Drawing.Point(481, 164);
+            this.txt_modprezzo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_modprezzo.Name = "txt_modprezzo";
-            this.txt_modprezzo.Size = new System.Drawing.Size(100, 22);
+            this.txt_modprezzo.Size = new System.Drawing.Size(76, 20);
             this.txt_modprezzo.TabIndex = 11;
             // 
             // lbl_modprezzo
             // 
             this.lbl_modprezzo.AutoSize = true;
-            this.lbl_modprezzo.Location = new System.Drawing.Point(641, 183);
+            this.lbl_modprezzo.Location = new System.Drawing.Point(481, 149);
+            this.lbl_modprezzo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_modprezzo.Name = "lbl_modprezzo";
-            this.lbl_modprezzo.Size = new System.Drawing.Size(93, 16);
+            this.lbl_modprezzo.Size = new System.Drawing.Size(76, 13);
             this.lbl_modprezzo.TabIndex = 10;
             this.lbl_modprezzo.Text = "Nuovo prezzo:";
             this.lbl_modprezzo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // txt_prodottomod
             // 
-            this.txt_prodottomod.Location = new System.Drawing.Point(164, 202);
-            this.txt_prodottomod.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txt_prodottomod.Location = new System.Drawing.Point(123, 164);
+            this.txt_prodottomod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_prodottomod.Name = "txt_prodottomod";
-            this.txt_prodottomod.Size = new System.Drawing.Size(203, 22);
+            this.txt_prodottomod.Size = new System.Drawing.Size(153, 20);
             this.txt_prodottomod.TabIndex = 12;
             // 
             // bttn_confermamod
             // 
-            this.bttn_confermamod.Location = new System.Drawing.Point(772, 191);
-            this.bttn_confermamod.Margin = new System.Windows.Forms.Padding(4);
+            this.bttn_confermamod.Location = new System.Drawing.Point(579, 155);
             this.bttn_confermamod.Name = "bttn_confermamod";
-            this.bttn_confermamod.Size = new System.Drawing.Size(117, 44);
+            this.bttn_confermamod.Size = new System.Drawing.Size(88, 36);
             this.bttn_confermamod.TabIndex = 13;
             this.bttn_confermamod.Text = "Conferma le modifiche";
             this.bttn_confermamod.UseVisualStyleBackColor = true;
@@ -188,19 +190,19 @@
             // lbl_vecchio
             // 
             this.lbl_vecchio.AutoSize = true;
-            this.lbl_vecchio.Location = new System.Drawing.Point(160, 183);
+            this.lbl_vecchio.Location = new System.Drawing.Point(120, 149);
+            this.lbl_vecchio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_vecchio.Name = "lbl_vecchio";
-            this.lbl_vecchio.Size = new System.Drawing.Size(210, 16);
+            this.lbl_vecchio.Size = new System.Drawing.Size(166, 13);
             this.lbl_vecchio.TabIndex = 14;
             this.lbl_vecchio.Text = " Nome del prodotto da modificare:";
             this.lbl_vecchio.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // bttn_cerca
             // 
-            this.bttn_cerca.Location = new System.Drawing.Point(388, 202);
-            this.bttn_cerca.Margin = new System.Windows.Forms.Padding(4);
+            this.bttn_cerca.Location = new System.Drawing.Point(291, 164);
             this.bttn_cerca.Name = "bttn_cerca";
-            this.bttn_cerca.Size = new System.Drawing.Size(72, 30);
+            this.bttn_cerca.Size = new System.Drawing.Size(54, 24);
             this.bttn_cerca.TabIndex = 15;
             this.bttn_cerca.Text = "Cerca";
             this.bttn_cerca.UseVisualStyleBackColor = true;
@@ -210,19 +212,17 @@
             // 
             this.lbl_aiuto.AutoSize = true;
             this.lbl_aiuto.ForeColor = System.Drawing.Color.Red;
-            this.lbl_aiuto.Location = new System.Drawing.Point(347, 135);
-            this.lbl_aiuto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_aiuto.Location = new System.Drawing.Point(260, 110);
             this.lbl_aiuto.Name = "lbl_aiuto";
-            this.lbl_aiuto.Size = new System.Drawing.Size(457, 16);
+            this.lbl_aiuto.Size = new System.Drawing.Size(361, 13);
             this.lbl_aiuto.TabIndex = 16;
             this.lbl_aiuto.Text = "*dopo aver fatto delle modifiche cliccare su Visualizza per vederle nella lista";
             // 
             // btt_confermaelimina
             // 
-            this.btt_confermaelimina.Location = new System.Drawing.Point(388, 273);
-            this.btt_confermaelimina.Margin = new System.Windows.Forms.Padding(4);
+            this.btt_confermaelimina.Location = new System.Drawing.Point(292, 209);
             this.btt_confermaelimina.Name = "btt_confermaelimina";
-            this.btt_confermaelimina.Size = new System.Drawing.Size(88, 30);
+            this.btt_confermaelimina.Size = new System.Drawing.Size(66, 24);
             this.btt_confermaelimina.TabIndex = 20;
             this.btt_confermaelimina.Text = "Conferma";
             this.btt_confermaelimina.UseVisualStyleBackColor = true;
@@ -230,40 +230,62 @@
             // 
             // lbl_eliminaprod
             // 
-            this.lbl_eliminaprod.Location = new System.Drawing.Point(160, 252);
+            this.lbl_eliminaprod.Location = new System.Drawing.Point(121, 192);
+            this.lbl_eliminaprod.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_eliminaprod.Name = "lbl_eliminaprod";
-            this.lbl_eliminaprod.Size = new System.Drawing.Size(210, 23);
+            this.lbl_eliminaprod.Size = new System.Drawing.Size(158, 19);
             this.lbl_eliminaprod.TabIndex = 21;
             this.lbl_eliminaprod.Text = "Nome del prodotto da eliminare:";
             // 
             // txt_elimina
             // 
-            this.txt_elimina.Location = new System.Drawing.Point(163, 277);
-            this.txt_elimina.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txt_elimina.Location = new System.Drawing.Point(123, 212);
+            this.txt_elimina.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_elimina.Name = "txt_elimina";
-            this.txt_elimina.Size = new System.Drawing.Size(203, 22);
+            this.txt_elimina.Size = new System.Drawing.Size(153, 20);
             this.txt_elimina.TabIndex = 18;
             // 
-            // bttn_eliminia
+            // bttn_elimina
             // 
-            this.bttn_eliminia.Location = new System.Drawing.Point(23, 271);
-            this.bttn_eliminia.Margin = new System.Windows.Forms.Padding(4);
-            this.bttn_eliminia.Name = "bttn_eliminia";
-            this.bttn_eliminia.Size = new System.Drawing.Size(117, 36);
-            this.bttn_eliminia.TabIndex = 17;
-            this.bttn_eliminia.Text = "Elimina";
-            this.bttn_eliminia.UseVisualStyleBackColor = true;
-            this.bttn_eliminia.Click += new System.EventHandler(this.bttn_eliminia_Click);
+            this.bttn_elimina.Location = new System.Drawing.Point(19, 207);
+            this.bttn_elimina.Name = "bttn_elimina";
+            this.bttn_elimina.Size = new System.Drawing.Size(88, 29);
+            this.bttn_elimina.TabIndex = 17;
+            this.bttn_elimina.Text = "Elimina";
+            this.bttn_elimina.UseVisualStyleBackColor = true;
+            this.bttn_elimina.Click += new System.EventHandler(this.bttn_eliminia_Click);
+            // 
+            // bttn_annulla
+            // 
+            this.bttn_annulla.Location = new System.Drawing.Point(579, 212);
+            this.bttn_annulla.Name = "bttn_annulla";
+            this.bttn_annulla.Size = new System.Drawing.Size(88, 29);
+            this.bttn_annulla.TabIndex = 23;
+            this.bttn_annulla.Text = "Annulla";
+            this.bttn_annulla.UseVisualStyleBackColor = true;
+            this.bttn_annulla.Click += new System.EventHandler(this.bttn_annulla_Click);
+            // 
+            // bttn_OrdAlf
+            // 
+            this.bttn_OrdAlf.Location = new System.Drawing.Point(18, 256);
+            this.bttn_OrdAlf.Name = "bttn_OrdAlf";
+            this.bttn_OrdAlf.Size = new System.Drawing.Size(141, 29);
+            this.bttn_OrdAlf.TabIndex = 24;
+            this.bttn_OrdAlf.Text = "Ordina alfabaticamente";
+            this.bttn_OrdAlf.UseVisualStyleBackColor = true;
+            this.bttn_OrdAlf.Click += new System.EventHandler(this.bttn_OrdAlf_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1267, 591);
+            this.ClientSize = new System.Drawing.Size(950, 480);
+            this.Controls.Add(this.bttn_OrdAlf);
+            this.Controls.Add(this.bttn_annulla);
             this.Controls.Add(this.btt_confermaelimina);
             this.Controls.Add(this.lbl_eliminaprod);
             this.Controls.Add(this.txt_elimina);
-            this.Controls.Add(this.bttn_eliminia);
+            this.Controls.Add(this.bttn_elimina);
             this.Controls.Add(this.lbl_aiuto);
             this.Controls.Add(this.bttn_cerca);
             this.Controls.Add(this.lbl_vecchio);
@@ -281,7 +303,7 @@
             this.Controls.Add(this.txt_nome);
             this.Controls.Add(this.lbl_prezzo);
             this.Controls.Add(this.lbl_nome);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "GestioneProdottiCRUD";
             this.ResumeLayout(false);
@@ -311,7 +333,9 @@
         private System.Windows.Forms.Button btt_confermaelimina;
         private System.Windows.Forms.Label lbl_eliminaprod;
         private System.Windows.Forms.TextBox txt_elimina;
-        private System.Windows.Forms.Button bttn_eliminia;
+        private System.Windows.Forms.Button bttn_elimina;
+        private System.Windows.Forms.Button bttn_annulla;
+        private System.Windows.Forms.Button bttn_OrdAlf;
     }
 }
 
