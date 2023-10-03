@@ -222,9 +222,9 @@ namespace CRUDprodottiprezzo
                     if (prodelim == p[i].Nome)
                     {
                         //messaggio che chiede la conferma dell'eliminazione
-                        const string message ="Eliminare il prodotto?";
+                        const string message = "Eliminare il prodotto?";
                         const string caption = "Form Closing";
-                        var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                        var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (result == System.Windows.Forms.DialogResult.Yes)
                         {
                             p[i].Nome = null;
@@ -274,7 +274,23 @@ namespace CRUDprodottiprezzo
 
         private void bttn_OrdAlf_Click(object sender, EventArgs e)
         {
-            //ordina utilizzando il CompareTo
+            for (int i = 0; i < dim; i++)
+            {
+                for (int j = i + 1; j < dim; j++)
+                {
+                    if (p[i].Nome.CompareTo(p[j].Nome) > 0)
+                    {
+                        string scelta = p[i].Nome;
+                        p[i].Nome = p[j].Nome;
+                        p[j].Nome = scelta;
+
+                        float n = p[i].Prezzo;
+                        p[i].Prezzo = p[j].Prezzo;
+                        p[j].Prezzo = n;
+                    }
+                }
+            }
+            
         }
     }
 }
