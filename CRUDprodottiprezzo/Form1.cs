@@ -84,19 +84,23 @@ namespace CRUDprodottiprezzo
                 MessageBox.Show("Aggiunto");
 
                 dim++;
+                visualizza(p);
+                somma(p);
             }
 
         }
 
         //BOTTONE CHE VISUALIZZA I PRODOTTI NELLA LISTA
-        private void bttn_visuallizza_Click(object sender, EventArgs e)
+        private void visualizza(Prodotto[]p)
         {
             lst_visual.Items.Clear();
             for (int i = 0; i < dim; i++)
             {
                 lst_visual.Items.Add(prodString(p[i]));
             }
-
+        }
+        private void bttn_visuallizza_Click(object sender, EventArgs e)
+        {
         }
 
 
@@ -118,7 +122,7 @@ namespace CRUDprodottiprezzo
             txt_nome.Enabled = false;
 
             bttn_aggiungi.Enabled = false;
-            bttn_visuallizza.Enabled = false;
+            
 
             bttn_annulla.Visible = true;
 
@@ -151,7 +155,6 @@ namespace CRUDprodottiprezzo
 
                 }
             }
-
 
         }
         //Bottone conferma che una volta premuto salva il contenuto delle celle e lo sovrascrive sui vecchi contenuti
@@ -187,15 +190,16 @@ namespace CRUDprodottiprezzo
                 lbl_modnome.Visible = false;
                 txt_prodottomod.Visible = false;
                 lbl_vecchio.Visible = false;
+                bttn_annulla.Visible = false;
 
                 bttn_confermamod.Visible = false;
                 bttn_cerca.Visible = false;
                 txt_prezzo.Enabled = true;
                 txt_nome.Enabled = true;
-                bttn_aggiungi.Enabled = true;
-                bttn_visuallizza.Enabled = true;
-                txt_prodottomod.Enabled = true;
+                bttn_aggiungi.Enabled = true;txt_prodottomod.Enabled = true;
+                
             }
+            visualizza(p);
         }
         private void bttn_eliminia_Click(object sender, EventArgs e)
         {
@@ -237,6 +241,7 @@ namespace CRUDprodottiprezzo
                             lbl_eliminaprod.Visible = false;
                             txt_elimina.Visible = false;
                             btt_confermaelimina.Visible = false;
+                            bttn_annulla.Visible = false;
                         }
                     }
                     else
@@ -247,8 +252,8 @@ namespace CRUDprodottiprezzo
                 }
 
                 txt_elimina.Text = "";
-
             }
+            visualizza(p);
         }
         private void bttn_annulla_Click(object sender, EventArgs e)
         {
@@ -261,14 +266,15 @@ namespace CRUDprodottiprezzo
             bttn_cerca.Visible = false;
             bttn_confermamod.Visible = false;
             bttn_annulla.Visible = false;
+            bttn_elimina.Visible=false;
+            txt_elimina.Visible=false;  
+            lbl_eliminaprod.Visible=false;
 
             bttn_confermamod.Visible = false;
             bttn_cerca.Visible = false;
             txt_prezzo.Enabled = true;
             txt_nome.Enabled = true;
-            bttn_aggiungi.Enabled = true;
-            bttn_visuallizza.Enabled = true;
-            bttn_elimina.Enabled = true;
+            bttn_aggiungi.Enabled = true;bttn_elimina.Enabled = true;
             txt_prodottomod.Enabled = true;
         }
 
@@ -290,7 +296,18 @@ namespace CRUDprodottiprezzo
                     }
                 }
             }
-            
+            visualizza(p);
+        }
+        private void somma(Prodotto[]p)
+        {
+            float somma = 0;
+
+            for(int i = 0; i < dim;i++)
+            {
+                somma += p[i].Prezzo;
+            }
+
+            lst_visual.Items.Add(somma);
         }
     }
 }
