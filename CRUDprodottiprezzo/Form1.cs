@@ -200,6 +200,7 @@ namespace CRUDprodottiprezzo
                 
             }
             visualizza(p);
+            somma(p);
         }
         private void bttn_eliminia_Click(object sender, EventArgs e)
         {
@@ -254,6 +255,7 @@ namespace CRUDprodottiprezzo
                 txt_elimina.Text = "";
             }
             visualizza(p);
+            somma(p);
         }
         private void bttn_annulla_Click(object sender, EventArgs e)
         {
@@ -278,8 +280,10 @@ namespace CRUDprodottiprezzo
             txt_prodottomod.Enabled = true;
         }
 
+        //ORDINAMENTO ALFABETICO
         private void bttn_OrdAlf_Click(object sender, EventArgs e)
         {
+            //ordinamento BubbleSort che sfrutta la funzione CompareTo per confrontare i nomi dei prodotti
             for (int i = 0; i < dim; i++)
             {
                 for (int j = i + 1; j < dim; j++)
@@ -297,17 +301,91 @@ namespace CRUDprodottiprezzo
                 }
             }
             visualizza(p);
+            somma(p);
         }
+        //SOMMA TOTALE DEI PRODOTTI
+        public float som;
         private void somma(Prodotto[]p)
         {
-            float somma = 0;
+            som = 0;
 
-            for(int i = 0; i < dim;i++)
+            for (int i = 0; i < dim;i++)
             {
-                somma += p[i].Prezzo;
+                som += p[i].Prezzo;
             }
 
-            lst_visual.Items.Add(somma);
+            lst_totEsconto.Items.Clear();
+            lst_totEsconto.Items.Add("Prezzo totale:"+som);
+        }
+
+        private void sconto_Click(object sender, EventArgs e)
+        {
+            txt_sconto.Visible = true;
+            int sconto = int.Parse(txt_sconto.Text);
+
+            for (int i = 0; i < dim; i++)
+            {
+                p[i].Prezzo = p[i].Prezzo+(p[i].Prezzo / 100) * sconto;
+            }
+            somma(p);
+        }
+
+        private void bttn_sottrai_Click(object sender, EventArgs e)
+        {
+            txt_sconto.Visible = true;
+            int sconto = int.Parse(txt_sconto.Text);
+
+
+            for (int i = 0; i < dim; i++)
+            {
+                p[i].Prezzo = p[i].Prezzo - (p[i].Prezzo / 100) * sconto;
+            }
+            somma(p);
+        }
+
+        private void ShellSort(Prodotto[] p)
+        {
+            for (int gap = dim / 2; gap >= 0; gap /= 2)
+            {
+                for (int i = gap; i < dim; i += 1)
+                {
+                    float temp = p[i].Prezzo;  
+                    int j;
+                    for (j = i; j >= gap && p[j - gap].Prezzo > temp; j -= gap)
+                    {
+                        p[j].Prezzo = p[j - gap].Prezzo;
+                        
+                    }
+
+                    p[j].Prezzo = temp;
+                }
+            } 
+        }
+        //NUMERO MASSIMO
+        private void bttn_max_Click(object sender, EventArgs e)
+        {
+            ShellSort(p);
+
+            float max = p[dim].Prezzo;
+            txt_maxmin.Clear();
+            txt_maxmin.Text = max.ToString();
+            
+        }
+        //NUMERO MINIMO
+        private void bttn_min_Click(object sender, EventArgs e)
+        {
+            float min = p[0].Prezzo;
+
+            for (int i = 0; i < dim; i++)
+            {
+                if (p[i].Prezzo < min)
+                {
+                    min = p[i].Prezzo;
+                }
+            }
+            txt_maxmin.Clear();
+            txt_maxmin.Text = min.ToString();
+            
         }
     }
 }
