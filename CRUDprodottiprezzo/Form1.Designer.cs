@@ -43,7 +43,7 @@
             this.bttn_confermamod = new System.Windows.Forms.Button();
             this.lbl_vecchio = new System.Windows.Forms.Label();
             this.bttn_cerca = new System.Windows.Forms.Button();
-            this.btt_confermaelimina = new System.Windows.Forms.Button();
+            this.bttn_confermaelimina = new System.Windows.Forms.Button();
             this.lbl_eliminaprod = new System.Windows.Forms.Label();
             this.txt_elimina = new System.Windows.Forms.TextBox();
             this.bttn_elimina = new System.Windows.Forms.Button();
@@ -70,7 +70,6 @@
             this.lbl_nome.TabIndex = 0;
             this.lbl_nome.Text = "Nome:";
             this.lbl_nome.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.lbl_nome.Click += new System.EventHandler(this.label1_Click);
             // 
             // lbl_prezzo
             // 
@@ -206,16 +205,16 @@
             this.bttn_cerca.UseVisualStyleBackColor = true;
             this.bttn_cerca.Click += new System.EventHandler(this.bttn_cerca_Click);
             // 
-            // btt_confermaelimina
+            // bttn_confermaelimina
             // 
-            this.btt_confermaelimina.Location = new System.Drawing.Point(389, 186);
-            this.btt_confermaelimina.Margin = new System.Windows.Forms.Padding(4);
-            this.btt_confermaelimina.Name = "btt_confermaelimina";
-            this.btt_confermaelimina.Size = new System.Drawing.Size(88, 30);
-            this.btt_confermaelimina.TabIndex = 20;
-            this.btt_confermaelimina.Text = "Conferma";
-            this.btt_confermaelimina.UseVisualStyleBackColor = true;
-            this.btt_confermaelimina.Click += new System.EventHandler(this.btt_confermaelimina_Click);
+            this.bttn_confermaelimina.Location = new System.Drawing.Point(389, 186);
+            this.bttn_confermaelimina.Margin = new System.Windows.Forms.Padding(4);
+            this.bttn_confermaelimina.Name = "bttn_confermaelimina";
+            this.bttn_confermaelimina.Size = new System.Drawing.Size(88, 30);
+            this.bttn_confermaelimina.TabIndex = 20;
+            this.bttn_confermaelimina.Text = "Conferma";
+            this.bttn_confermaelimina.UseVisualStyleBackColor = true;
+            this.bttn_confermaelimina.Click += new System.EventHandler(this.bttn_confermaelimina_Click);
             // 
             // lbl_eliminaprod
             // 
@@ -386,7 +385,7 @@
             this.Controls.Add(this.lst_totEsconto);
             this.Controls.Add(this.bttn_OrdAlf);
             this.Controls.Add(this.bttn_annulla);
-            this.Controls.Add(this.btt_confermaelimina);
+            this.Controls.Add(this.bttn_confermaelimina);
             this.Controls.Add(this.lbl_eliminaprod);
             this.Controls.Add(this.txt_elimina);
             this.Controls.Add(this.bttn_elimina);
@@ -430,7 +429,7 @@
         private System.Windows.Forms.Button bttn_confermamod;
         private System.Windows.Forms.Label lbl_vecchio;
         private System.Windows.Forms.Button bttn_cerca;
-        private System.Windows.Forms.Button btt_confermaelimina;
+        private System.Windows.Forms.Button bttn_confermaelimina;
         private System.Windows.Forms.Label lbl_eliminaprod;
         private System.Windows.Forms.TextBox txt_elimina;
         private System.Windows.Forms.Button bttn_elimina;

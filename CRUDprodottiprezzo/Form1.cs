@@ -26,59 +26,68 @@ namespace CRUDprodottiprezzo
         public Prodotto[] p;
         public int dim = 0;
 
-        public int l = 0;
-        public int[] scontiapplicati; 
+         
         public Form1()
         {
             InitializeComponent();
 
             p = new Prodotto[100];
             
-            scontiapplicati = new int[l];
+            //comandi Enabled per l'interfaccia grafica del PULSANTE MODIFICA, che vanno a nascondere celle quando non servono
 
-            //comandi Visibile per l'interfaccia grafica del PULSANTE MODIFICA, che vanno a nascondere celle quando non servono
+            bttn_modifica.Enabled = false;
 
-            txt_modprezzo.Visible = false;
-            lbl_modprezzo.Visible = false;
-            txt_modnome.Visible = false;
-            lbl_modnome.Visible = false;
-            txt_prodottomod.Visible = false;
-            lbl_vecchio.Visible = false;
+            txt_modprezzo.Enabled = false;
+            lbl_modprezzo.Enabled = false;
+            txt_modnome.Enabled = false;
+            lbl_modnome.Enabled = false;
+            txt_prodottomod.Enabled = false;
+            lbl_vecchio.Enabled = false;
 
-            bttn_confermamod.Visible = false;
-            bttn_cerca.Visible = false;
+            bttn_confermamod.Enabled = false;
+            bttn_cerca.Enabled = false;
 
-            //comandi Visibile per l'interfaccia grafica del PULSANTE MODIFICA, che vanno a nascondere celle quando non servono
-            lbl_eliminaprod.Visible = false;
-            txt_elimina.Visible = false;
-            btt_confermaelimina.Visible = false;
+            //comandi Enabled per l'interfaccia grafica del PULSANTE ELIMINA, che vanno a nascondere celle quando non servono
 
-            bttn_annulla.Visible = false;
-
-            //salvataggio delle percentuali applicate
+            bttn_elimina.Enabled = false;
             
+            lbl_eliminaprod.Enabled = false;
+            txt_elimina.Enabled = false;
+            bttn_confermaelimina.Enabled = false;
+
+            bttn_annulla.Enabled = false;
+
+            //Pulsanti disabilitati quando non sono presenti prodotti nella lista
+            bttn_OrdAlf.Enabled = false;
+            bttn_max.Enabled = false;
+            bttn_min.Enabled = false;
+            bttn_sottraiPerc.Enabled = false;
+            bttn_sommaPerc.Enabled = false;
+            bttn_leggi.Enabled = false;
+            bttn_salva.Enabled = false;
+
+            txt_sconto.Enabled = false;
+            txt_maxmin.Enabled = false;
+            lbl_sconto.Enabled = false;
 
         }
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        //FUNZIONE CHE SCRIVE L'OUTPUT PER LA LISTA
-        public string prodString(Prodotto p)
-        {
-            return "Nome: " + p.Nome + " Prezzo: " + p.Prezzo.ToString();
-        }
-
-        //BOTTONE CHE SALVA I IL NOME E IL PREZZO DEL PRODOTTO
+        
+        //PULSANTE AGGIUNGI, salva il nome del prodotto e il suo prezzo nella struct
         private void bttn_aggiungi_Click(object sender, EventArgs e)
         {
-            //se le text box sono vuote appare il messaggio a schermo fino a quando entrambi i campi non saranno pieni
+            string numero=txt_prezzo.Text;
+            bool controllo=int.TryParse(numero, out _);//TryParse converte un numero da stringa a intero, se non riesce da controllo==false
+            //se le text box sono vuote appare il messaggio appare schermo fino a quando entrambi i campi non saranno pieni
             if (String.IsNullOrEmpty(txt_nome.Text) || String.IsNullOrEmpty(txt_prezzo.Text))
             {
                 MessageBox.Show("Devi riempire tutti i campi per aggiungere un prodotto");
             }
-
+            //se sono presenti lettere nel campo dedicato al prezzo non permette di continuare
+            else if(controllo==false)
+            {
+                MessageBox.Show("Non puoi inserire lettere in questo campo");
+                txt_prezzo.Text = ("");
+            }
             //quando le text box sono compilate i dati vengono salvati all'interno dell'array
             else
             {
@@ -87,54 +96,67 @@ namespace CRUDprodottiprezzo
                 txt_nome.Text = ("");
                 txt_prezzo.Text = ("");
 
-                MessageBox.Show("Aggiunto");
+                MessageBox.Show("Prodotto aggiunto alla lista");
 
                 dim++;
+
+                //attivazione dei pulsanti prima disattivati perchè non presenti prodotti
+                bttn_modifica.Enabled = true;
+                bttn_elimina.Enabled = true;
+                bttn_OrdAlf.Enabled = true;
+                bttn_max.Enabled = true;
+                bttn_min.Enabled = true;
+                bttn_sottraiPerc.Enabled = true;
+                bttn_sommaPerc.Enabled = true;
+                bttn_leggi.Enabled = true;
+                bttn_salva.Enabled = true;
+
                 visualizza(p);
                 somma(p);
             }
-
         }
-
-        //BOTTONE CHE VISUALIZZA I PRODOTTI NELLA LISTA
+        //FUNZIONE CHE SCRIVE L'OUTPUT PER LA LISTA
+        public string prodString(Prodotto p)
+        {
+            return "Nome: " + p.Nome + " Prezzo: " + p.Prezzo.ToString();
+        }
+        //FUNZIONE VISUALIZZA, stampa il nome e il prezzo del prodotto nella List Box
         private void visualizza(Prodotto[]p)
         {
             lst_visual.Items.Clear();
+
             for (int i = 0; i < dim; i++)
             {
                 lst_visual.Items.Add(prodString(p[i]));
             }
         }
-        private void bttn_visuallizza_Click(object sender, EventArgs e)
-        {
-        }
-
-
-
-        //Bottone modifica che fa apparire oggeti per le modifiche prima nascoste
+        //PULSANTE MODIFICA, rende utilizzabili gli strumenti per la modifica
         private void bttn_modifica_Click(object sender, EventArgs e)
         {
-            txt_modprezzo.Visible = true;
-            lbl_modprezzo.Visible = true;
-            txt_modnome.Visible = true;
-            lbl_modnome.Visible = true;
-            txt_prodottomod.Visible = true;
-            lbl_vecchio.Visible = true;
+            if(dim>0)
+            {
+                txt_modprezzo.Enabled = true;
+                lbl_modprezzo.Enabled = true;
+                txt_modnome.Enabled = true;
+                lbl_modnome.Enabled = true;
+                txt_prodottomod.Enabled = true;
+                lbl_vecchio.Enabled = true;
 
-            bttn_confermamod.Visible = true;
-            bttn_cerca.Visible = true;
+                bttn_confermamod.Enabled = true;
+                bttn_cerca.Enabled = true;
 
-            txt_prezzo.Enabled = false;
-            txt_nome.Enabled = false;
+                txt_prezzo.Enabled = false;
+                txt_nome.Enabled = false;
 
-            bttn_aggiungi.Enabled = false;
-            
-
-            bttn_annulla.Visible = true;
-
+                bttn_aggiungi.Enabled = false;
+                bttn_annulla.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Non ci sono prodotti nella lista");
+            }
         }
-
-        //Bottone cerca, una volta scritto il prodotto da cercare viene scritto l'attuale nome e prezzo
+        //PULSANTE CERCA, una volta scritto il nome del prodotto da cercare viene scritto l'attuale nome e prezzo
         private void bttn_cerca_Click(object sender, EventArgs e)
         {
             string prodottomod = txt_prodottomod.Text;
@@ -145,34 +167,49 @@ namespace CRUDprodottiprezzo
             }
             else
             {
+                bool esiste = false;
+
                 //ciclo for per cercare il prodotto e stampare l'attuale nome e prezzo
                 for (int i = 0; i < dim; i++)
                 {
+                    //controllo dell'esistenza del prodotto nella lista
                     if (prodottomod == p[i].Nome)
+                    {
+                        esiste= true;
+                    }
+                    if (esiste == true)
                     {
                         txt_modnome.Text = p[i].Nome;
                         txt_modprezzo.Text = (p[i].Prezzo).ToString();
+                        
                         txt_prodottomod.Enabled = false;
                     }
-                    else
-                    {
-                        MessageBox.Show("Prodotto non presente nella lista, controlla di averlo scritto correttamente");
-                    }
-
+                }
+                //se non presente messaggio a schermo
+                if(esiste==false)
+                {
+                    MessageBox.Show("Non esiste un prodotto con questo nome.\nContolla di aver scritto il nome correttamente");
                 }
             }
-
         }
-        //Bottone conferma che una volta premuto salva il contenuto delle celle e lo sovrascrive sui vecchi contenuti
+        //PULSANTE CONFERMA, una volta premuto salva il contenuto delle celle e lo sovrascrive sui vecchi contenuti
         private void bttn_confermamod_Click(object sender, EventArgs e)
         {
+            string numero = txt_modprezzo.Text;
+            bool controllo = int.TryParse(numero, out _);
             string prodottomod = txt_prodottomod.Text;
-            //if che controlla se le celle sono vuote
+            //ciclo if che controlla se le celle sono vuote
             if (String.IsNullOrEmpty(txt_modnome.Text) || String.IsNullOrEmpty(txt_modprezzo.Text))
             {
                 MessageBox.Show("Per continuare le modifiche devi inserire qualcosa nelle text box");
             }
-            else
+            //se sono presenti lettere nel campo dedicato al prezzo non permette di continuare
+            else if (controllo == false)
+            {
+                MessageBox.Show("Non puoi inserire lettere in questo campo");
+                
+            }
+            else 
             {
                 //ciclo for per modificare i vecchi contenuti 
                 for (int i = 0; i < dim; i++)
@@ -181,43 +218,47 @@ namespace CRUDprodottiprezzo
                     {
                         p[i].Nome = txt_modnome.Text;
                         p[i].Prezzo = Convert.ToInt32(txt_modprezzo.Text);
+                        
                     }
-
                 }
 
                 //svuotamento delle celle
                 txt_modnome.Text = ("");
                 txt_modprezzo.Text = ("");
+                txt_prodottomod.Text = "";
 
-                //Riabilitazione di pulsanti e rimozione della visibilità degli oggetti dedicati alla modifica
-                txt_modprezzo.Visible = false;
-                lbl_modprezzo.Visible = false;
-                txt_modnome.Visible = false;
-                lbl_modnome.Visible = false;
-                txt_prodottomod.Visible = false;
-                lbl_vecchio.Visible = false;
-                bttn_annulla.Visible = false;
-
-                bttn_confermamod.Visible = false;
-                bttn_cerca.Visible = false;
+                //Riabilitazione di pulsanti e disabilitazione degli oggetti dedicati alla modifica
+                txt_modprezzo.Enabled = false;
+                lbl_modprezzo.Enabled = false;
+                txt_modnome.Enabled = false;
+                lbl_modnome.Enabled = false;
+                txt_prodottomod.Enabled = false;
+                lbl_vecchio.Enabled = false;
                 txt_prezzo.Enabled = true;
                 txt_nome.Enabled = true;
-                bttn_aggiungi.Enabled = true;txt_prodottomod.Enabled = true;
+                txt_prodottomod.Enabled = false;
+
+                bttn_annulla.Enabled = false;
+                bttn_confermamod.Enabled = false;
+                bttn_cerca.Enabled = false;
+                bttn_aggiungi.Enabled = true;
+                
                 
             }
             visualizza(p);
             somma(p);
         }
+        //PULSANTE ELIMINA, abilità gli strumenti per l'eliminazione
         private void bttn_eliminia_Click(object sender, EventArgs e)
         {
-            lbl_eliminaprod.Visible = true;
-            txt_elimina.Visible = true;
-            btt_confermaelimina.Visible = true;
+            lbl_eliminaprod.Enabled = true;
+            txt_elimina.Enabled = true;
 
-            bttn_annulla.Visible = true;
+            bttn_confermaelimina.Enabled = true;
+            bttn_annulla.Enabled = true;
         }
-
-        private void btt_confermaelimina_Click(object sender, EventArgs e)
+        //PULSANTE CONFERMA ELIMINAZIONE
+        private void bttn_confermaelimina_Click(object sender, EventArgs e)
         {
             string prodelim = txt_elimina.Text;
             //if che controlla se la cella è vuota
@@ -227,63 +268,82 @@ namespace CRUDprodottiprezzo
             }
             else
             {
+                bool esiste = false;
                 //ciclo for che cerca il prodotto da eliminare
                 for (int i = 0; i < dim; i++)
                 {
                     if (prodelim == p[i].Nome)
                     {
+                        esiste=true;
+                    }
+                    //se esiste nella lista si procede all'eliminazione
+                    if(esiste==true)
+                    {
                         //messaggio che chiede la conferma dell'eliminazione
                         const string message = "Eliminare il prodotto?";
                         const string caption = "Form Closing";
                         var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        //se il risultato è uguale Sì il prodotto viene definitivamente eliminato dalla lista
                         if (result == System.Windows.Forms.DialogResult.Yes)
                         {
                             p[i].Nome = null;
                             p[i].Prezzo = 0;
 
                             dim--;
+
+                            lbl_eliminaprod.Enabled = false;
+                            txt_elimina.Enabled = false;
+
+                            bttn_confermaelimina.Enabled = false;
+                            bttn_annulla.Enabled = false;
                         }
+                        //altrimenti gli strumenti di eliminazione vengono disabilitati
                         else
                         {
-                            lbl_eliminaprod.Visible = false;
-                            txt_elimina.Visible = false;
-                            btt_confermaelimina.Visible = false;
-                            bttn_annulla.Visible = false;
+                            lbl_eliminaprod.Enabled = false;
+                            txt_elimina.Enabled = false;
+                            bttn_confermaelimina.Enabled = false;
+                            bttn_annulla.Enabled = false;
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("Prodotto non presente nella lista, controlla di averlo scritto correttamente");
-                    }
-
                 }
-
+                if(esiste==false)
+                {
+                    MessageBox.Show("Non esiste un prodotto con questo nome.\nContolla di aver scritto il nome correttamente");
+                }
                 txt_elimina.Text = "";
             }
             visualizza(p);
             somma(p);
         }
+        //PULSANTE ANNULLA, permette in qualsiasi di annullare l'azione che si sta compiendo
         private void bttn_annulla_Click(object sender, EventArgs e)
         {
-            txt_modprezzo.Visible = false;
-            lbl_modprezzo.Visible = false;
-            txt_modnome.Visible = false;
-            lbl_modnome.Visible = false;
-            txt_prodottomod.Visible = false;
-            lbl_vecchio.Visible = false;
-            bttn_cerca.Visible = false;
-            bttn_confermamod.Visible = false;
-            bttn_annulla.Visible = false;
-            bttn_elimina.Visible=false;
-            txt_elimina.Visible=false;  
-            lbl_eliminaprod.Visible=false;
-
-            bttn_confermamod.Visible = false;
-            bttn_cerca.Visible = false;
+            txt_modprezzo.Enabled = false;
+            lbl_modprezzo.Enabled = false;
+            txt_modnome.Enabled = false;
+            lbl_modnome.Enabled = false;
+            txt_prodottomod.Enabled = false;
+            lbl_vecchio.Enabled = false;
+            txt_elimina.Enabled = false;
+            lbl_eliminaprod.Enabled = false;
             txt_prezzo.Enabled = true;
             txt_nome.Enabled = true;
-            bttn_aggiungi.Enabled = true;bttn_elimina.Enabled = true;
-            txt_prodottomod.Enabled = true;
+            txt_prodottomod.Enabled = false;
+
+            bttn_cerca.Enabled = false;
+            bttn_confermamod.Enabled = false;
+            bttn_annulla.Enabled = false;
+            bttn_confermamod.Enabled = false;
+            bttn_cerca.Enabled = false;
+            bttn_confermaelimina.Enabled=false;
+            bttn_aggiungi.Enabled = true;
+            bttn_elimina.Enabled = true;
+
+            txt_elimina.Text = "";
+            txt_prodottomod.Text = "";
+            txt_modnome.Text = "";
+            txt_modprezzo.Text = "";
         }
 
         //ORDINAMENTO ALFABETICO
@@ -424,17 +484,13 @@ namespace CRUDprodottiprezzo
         {
             StreamReader sr = new StreamReader(@"ElencoProdotti.txt");
 
-            /*
-            string frase = lettura.ReadToEnd();
-            string[] frasetta = Split100(frase);
-            int[] nuova = new int[frasetta.Length];
-             */
+            
             string linea = sr.ReadToEnd();
             string[] l = linea.Split();
 
             for(int i = 0; i < l.Length; i++)
             {
-                lst_visual.Items.Add(linea);
+                lst_visual.Items.Add(l[i]);
             }
 
             sr.Close();
