@@ -8,6 +8,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using static CRUDprodottiprezzo.Form1;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
@@ -23,14 +24,17 @@ namespace CRUDprodottiprezzo
             public float Prezzo;
         }
         public Prodotto[] p;
+        public int dim = 0;
 
-        public int dim;
+        public int l = 0;
+        public int[] scontiapplicati; 
         public Form1()
         {
             InitializeComponent();
-            p = new Prodotto[100];
 
-            dim = 0;
+            p = new Prodotto[100];
+            
+            scontiapplicati = new int[l];
 
             //comandi Visibile per l'interfaccia grafica del PULSANTE MODIFICA, che vanno a nascondere celle quando non servono
 
@@ -51,6 +55,8 @@ namespace CRUDprodottiprezzo
 
             bttn_annulla.Visible = false;
 
+            //salvataggio delle percentuali applicate
+            
 
         }
         private void label1_Click(object sender, EventArgs e)
@@ -317,56 +323,70 @@ namespace CRUDprodottiprezzo
             lst_totEsconto.Items.Clear();
             lst_totEsconto.Items.Add("Prezzo totale:"+som);
         }
-
-        private void sconto_Click(object sender, EventArgs e)
+        //SOMMA DELLA PERCENTUALE
+        private void sommaPerc_Click(object sender, EventArgs e)
         {
-            txt_sconto.Visible = true;
-            int sconto = int.Parse(txt_sconto.Text);
-
-            for (int i = 0; i < dim; i++)
+            if (String.IsNullOrEmpty(txt_sconto.Text))
             {
-                p[i].Prezzo = p[i].Prezzo+(p[i].Prezzo / 100) * sconto;
+                MessageBox.Show("Devi inserire un valore nelle text box");
             }
-            somma(p);
-        }
-
-        private void bttn_sottrai_Click(object sender, EventArgs e)
-        {
-            txt_sconto.Visible = true;
-            int sconto = int.Parse(txt_sconto.Text);
-
-
-            for (int i = 0; i < dim; i++)
+            else
             {
-                p[i].Prezzo = p[i].Prezzo - (p[i].Prezzo / 100) * sconto;
-            }
-            somma(p);
-        }
+                int sconto;
+                sconto = int.Parse(txt_sconto.Text);
 
-        private void ShellSort(Prodotto[] p)
-        {
-            for (int gap = dim / 2; gap >= 0; gap /= 2)
-            {
-                for (int i = gap; i < dim; i += 1)
+               /* l++;
+
+                for(int i = 0; i < l;i++)
                 {
-                    float temp = p[i].Prezzo;  
-                    int j;
-                    for (j = i; j >= gap && p[j - gap].Prezzo > temp; j -= gap)
-                    {
-                        p[j].Prezzo = p[j - gap].Prezzo;
-                        
-                    }
-
-                    p[j].Prezzo = temp;
+                    scontiapplicati[i]= sconto;
                 }
-            } 
+                */
+                for (int i = 0; i < dim; i++)
+                {
+                    p[i].Prezzo = p[i].Prezzo + (p[i].Prezzo / 100) * sconto;
+                }
+                somma(p);
+                txt_sconto.Text = "";
+            }
+            
         }
+        //SOTTRAZIONE DELLA PERCENTUALE
+        private void bttn_sottraiPerc_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txt_sconto.Text))
+            {
+                MessageBox.Show("Devi inserire un valore nelle text box");
+            }
+            else 
+            {
+                int sconto;
+                sconto = int.Parse(txt_sconto.Text);
+
+                for (int i = 0; i < dim; i++)
+                {
+                    p[i].Prezzo = p[i].Prezzo - (p[i].Prezzo / 100) * sconto;
+                }
+                somma(p);
+                txt_sconto.Text = "";
+            }
+        }
+       
+
+
         //NUMERO MASSIMO
         private void bttn_max_Click(object sender, EventArgs e)
         {
-            ShellSort(p);
 
-            float max = p[dim].Prezzo;
+            float max = p[0].Prezzo;
+
+            for (int i = 0; i < dim; i++)
+            {
+                if (p[i].Prezzo > max)
+                {
+                    max = p[i].Prezzo;
+                }
+            }
             txt_maxmin.Clear();
             txt_maxmin.Text = max.ToString();
             
@@ -386,6 +406,39 @@ namespace CRUDprodottiprezzo
             txt_maxmin.Clear();
             txt_maxmin.Text = min.ToString();
             
+        }
+
+        private void bttn_salva_Click(object sender, EventArgs e)
+        {
+            StreamWriter sw = new StreamWriter(@"Lista.txt");
+
+            for(int i = 0; i < dim;i++)
+            {
+                sw.WriteLine(p[i].Nome+";"+ p[i].Prezzo);
+            }
+
+            sw.Close();
+        }
+
+        private void bttn_leggi_Click(object sender, EventArgs e)
+        {
+            StreamReader sr = new StreamReader(@"ElencoProdotti.txt");
+
+            /*
+            string frase = lettura.ReadToEnd();
+            string[] frasetta = Split100(frase);
+            int[] nuova = new int[frasetta.Length];
+             */
+            string linea = sr.ReadToEnd();
+            string[] l = linea.Split();
+
+            for(int i = 0; i < l.Length; i++)
+            {
+                lst_visual.Items.Add(linea);
+            }
+
+            sr.Close();
+
         }
     }
 }

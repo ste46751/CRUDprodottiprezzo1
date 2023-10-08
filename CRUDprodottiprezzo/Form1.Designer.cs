@@ -50,13 +50,15 @@
             this.bttn_annulla = new System.Windows.Forms.Button();
             this.bttn_OrdAlf = new System.Windows.Forms.Button();
             this.lst_totEsconto = new System.Windows.Forms.ListBox();
-            this.bttn_sconto = new System.Windows.Forms.Button();
+            this.bttn_sommaPerc = new System.Windows.Forms.Button();
             this.txt_sconto = new System.Windows.Forms.TextBox();
             this.lbl_sconto = new System.Windows.Forms.Label();
-            this.bttn_sottrai = new System.Windows.Forms.Button();
+            this.bttn_sottraiPerc = new System.Windows.Forms.Button();
             this.txt_maxmin = new System.Windows.Forms.TextBox();
             this.bttn_max = new System.Windows.Forms.Button();
             this.bttn_min = new System.Windows.Forms.Button();
+            this.bttn_salva = new System.Windows.Forms.Button();
+            this.bttn_leggi = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_nome
@@ -195,7 +197,7 @@
             // 
             // bttn_cerca
             // 
-            this.bttn_cerca.Location = new System.Drawing.Point(388, 130);
+            this.bttn_cerca.Location = new System.Drawing.Point(389, 126);
             this.bttn_cerca.Margin = new System.Windows.Forms.Padding(4);
             this.bttn_cerca.Name = "bttn_cerca";
             this.bttn_cerca.Size = new System.Drawing.Size(72, 30);
@@ -271,19 +273,19 @@
             this.lst_totEsconto.Location = new System.Drawing.Point(919, 390);
             this.lst_totEsconto.Margin = new System.Windows.Forms.Padding(4);
             this.lst_totEsconto.Name = "lst_totEsconto";
-            this.lst_totEsconto.Size = new System.Drawing.Size(293, 20);
+            this.lst_totEsconto.Size = new System.Drawing.Size(293, 84);
             this.lst_totEsconto.TabIndex = 25;
             // 
-            // bttn_sconto
+            // bttn_sommaPerc
             // 
-            this.bttn_sconto.Location = new System.Drawing.Point(742, 317);
-            this.bttn_sconto.Margin = new System.Windows.Forms.Padding(4);
-            this.bttn_sconto.Name = "bttn_sconto";
-            this.bttn_sconto.Size = new System.Drawing.Size(147, 36);
-            this.bttn_sconto.TabIndex = 26;
-            this.bttn_sconto.Text = "Somma percentuale";
-            this.bttn_sconto.UseVisualStyleBackColor = true;
-            this.bttn_sconto.Click += new System.EventHandler(this.sconto_Click);
+            this.bttn_sommaPerc.Location = new System.Drawing.Point(742, 317);
+            this.bttn_sommaPerc.Margin = new System.Windows.Forms.Padding(4);
+            this.bttn_sommaPerc.Name = "bttn_sommaPerc";
+            this.bttn_sommaPerc.Size = new System.Drawing.Size(147, 36);
+            this.bttn_sommaPerc.TabIndex = 26;
+            this.bttn_sommaPerc.Text = "Somma percentuale";
+            this.bttn_sommaPerc.UseVisualStyleBackColor = true;
+            this.bttn_sommaPerc.Click += new System.EventHandler(this.sommaPerc_Click);
             // 
             // txt_sconto
             // 
@@ -304,16 +306,16 @@
             this.lbl_sconto.Text = "Sconto:";
             this.lbl_sconto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // bttn_sottrai
+            // bttn_sottraiPerc
             // 
-            this.bttn_sottrai.Location = new System.Drawing.Point(601, 317);
-            this.bttn_sottrai.Margin = new System.Windows.Forms.Padding(4);
-            this.bttn_sottrai.Name = "bttn_sottrai";
-            this.bttn_sottrai.Size = new System.Drawing.Size(140, 36);
-            this.bttn_sottrai.TabIndex = 29;
-            this.bttn_sottrai.Text = "Sottrai percentuale";
-            this.bttn_sottrai.UseVisualStyleBackColor = true;
-            this.bttn_sottrai.Click += new System.EventHandler(this.bttn_sottrai_Click);
+            this.bttn_sottraiPerc.Location = new System.Drawing.Point(601, 317);
+            this.bttn_sottraiPerc.Margin = new System.Windows.Forms.Padding(4);
+            this.bttn_sottraiPerc.Name = "bttn_sottraiPerc";
+            this.bttn_sottraiPerc.Size = new System.Drawing.Size(140, 36);
+            this.bttn_sottraiPerc.TabIndex = 29;
+            this.bttn_sottraiPerc.Text = "Sottrai percentuale";
+            this.bttn_sottraiPerc.UseVisualStyleBackColor = true;
+            this.bttn_sottraiPerc.Click += new System.EventHandler(this.bttn_sottraiPerc_Click);
             // 
             // txt_maxmin
             // 
@@ -345,18 +347,42 @@
             this.bttn_min.UseVisualStyleBackColor = true;
             this.bttn_min.Click += new System.EventHandler(this.bttn_min_Click);
             // 
+            // bttn_salva
+            // 
+            this.bttn_salva.Location = new System.Drawing.Point(24, 476);
+            this.bttn_salva.Margin = new System.Windows.Forms.Padding(4);
+            this.bttn_salva.Name = "bttn_salva";
+            this.bttn_salva.Size = new System.Drawing.Size(136, 36);
+            this.bttn_salva.TabIndex = 33;
+            this.bttn_salva.Text = "Salva lista su file";
+            this.bttn_salva.UseVisualStyleBackColor = true;
+            this.bttn_salva.Click += new System.EventHandler(this.bttn_salva_Click);
+            // 
+            // bttn_leggi
+            // 
+            this.bttn_leggi.Location = new System.Drawing.Point(207, 476);
+            this.bttn_leggi.Margin = new System.Windows.Forms.Padding(4);
+            this.bttn_leggi.Name = "bttn_leggi";
+            this.bttn_leggi.Size = new System.Drawing.Size(136, 36);
+            this.bttn_leggi.TabIndex = 34;
+            this.bttn_leggi.Text = "Leggi file";
+            this.bttn_leggi.UseVisualStyleBackColor = true;
+            this.bttn_leggi.Click += new System.EventHandler(this.bttn_leggi_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1267, 591);
+            this.Controls.Add(this.bttn_leggi);
+            this.Controls.Add(this.bttn_salva);
             this.Controls.Add(this.bttn_max);
             this.Controls.Add(this.bttn_min);
             this.Controls.Add(this.txt_maxmin);
-            this.Controls.Add(this.bttn_sottrai);
+            this.Controls.Add(this.bttn_sottraiPerc);
             this.Controls.Add(this.txt_sconto);
             this.Controls.Add(this.lbl_sconto);
-            this.Controls.Add(this.bttn_sconto);
+            this.Controls.Add(this.bttn_sommaPerc);
             this.Controls.Add(this.lst_totEsconto);
             this.Controls.Add(this.bttn_OrdAlf);
             this.Controls.Add(this.bttn_annulla);
@@ -411,13 +437,15 @@
         private System.Windows.Forms.Button bttn_annulla;
         private System.Windows.Forms.Button bttn_OrdAlf;
         private System.Windows.Forms.ListBox lst_totEsconto;
-        private System.Windows.Forms.Button bttn_sconto;
+        private System.Windows.Forms.Button bttn_sommaPerc;
         private System.Windows.Forms.TextBox txt_sconto;
         private System.Windows.Forms.Label lbl_sconto;
-        private System.Windows.Forms.Button bttn_sottrai;
+        private System.Windows.Forms.Button bttn_sottraiPerc;
         private System.Windows.Forms.TextBox txt_maxmin;
         private System.Windows.Forms.Button bttn_max;
         private System.Windows.Forms.Button bttn_min;
+        private System.Windows.Forms.Button bttn_salva;
+        private System.Windows.Forms.Button bttn_leggi;
     }
 }
 
