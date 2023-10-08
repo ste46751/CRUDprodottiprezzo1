@@ -52,7 +52,6 @@
             this.lst_totEsconto = new System.Windows.Forms.ListBox();
             this.bttn_sommaPerc = new System.Windows.Forms.Button();
             this.txt_sconto = new System.Windows.Forms.TextBox();
-            this.lbl_sconto = new System.Windows.Forms.Label();
             this.bttn_sottraiPerc = new System.Windows.Forms.Button();
             this.txt_maxmin = new System.Windows.Forms.TextBox();
             this.bttn_max = new System.Windows.Forms.Button();
@@ -289,21 +288,11 @@
             // txt_sconto
             // 
             this.txt_sconto.AcceptsReturn = true;
-            this.txt_sconto.Location = new System.Drawing.Point(688, 388);
+            this.txt_sconto.Location = new System.Drawing.Point(684, 361);
             this.txt_sconto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_sconto.Name = "txt_sconto";
             this.txt_sconto.Size = new System.Drawing.Size(118, 22);
             this.txt_sconto.TabIndex = 28;
-            // 
-            // lbl_sconto
-            // 
-            this.lbl_sconto.AutoSize = true;
-            this.lbl_sconto.Location = new System.Drawing.Point(714, 365);
-            this.lbl_sconto.Name = "lbl_sconto";
-            this.lbl_sconto.Size = new System.Drawing.Size(52, 16);
-            this.lbl_sconto.TabIndex = 27;
-            this.lbl_sconto.Text = "Sconto:";
-            this.lbl_sconto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // bttn_sottraiPerc
             // 
@@ -318,7 +307,7 @@
             // 
             // txt_maxmin
             // 
-            this.txt_maxmin.Location = new System.Drawing.Point(247, 388);
+            this.txt_maxmin.Location = new System.Drawing.Point(252, 359);
             this.txt_maxmin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_maxmin.Name = "txt_maxmin";
             this.txt_maxmin.Size = new System.Drawing.Size(120, 22);
@@ -380,7 +369,6 @@
             this.Controls.Add(this.txt_maxmin);
             this.Controls.Add(this.bttn_sottraiPerc);
             this.Controls.Add(this.txt_sconto);
-            this.Controls.Add(this.lbl_sconto);
             this.Controls.Add(this.bttn_sommaPerc);
             this.Controls.Add(this.lst_totEsconto);
             this.Controls.Add(this.bttn_OrdAlf);
@@ -438,7 +426,6 @@
         private System.Windows.Forms.ListBox lst_totEsconto;
         private System.Windows.Forms.Button bttn_sommaPerc;
         private System.Windows.Forms.TextBox txt_sconto;
-        private System.Windows.Forms.Label lbl_sconto;
         private System.Windows.Forms.Button bttn_sottraiPerc;
         private System.Windows.Forms.TextBox txt_maxmin;
         private System.Windows.Forms.Button bttn_max;

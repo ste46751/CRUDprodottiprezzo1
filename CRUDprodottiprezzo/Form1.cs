@@ -65,11 +65,6 @@ namespace CRUDprodottiprezzo
             bttn_sommaPerc.Enabled = false;
             bttn_leggi.Enabled = false;
             bttn_salva.Enabled = false;
-
-            txt_sconto.Enabled = false;
-            txt_maxmin.Enabled = false;
-            lbl_sconto.Enabled = false;
-
         }
         
         //PULSANTE AGGIUNGI, salva il nome del prodotto e il suo prezzo nella struct
@@ -262,7 +257,11 @@ namespace CRUDprodottiprezzo
         {
             string prodelim = txt_elimina.Text;
             //if che controlla se la cella è vuota
-            if (String.IsNullOrEmpty(txt_elimina.Text))
+            if(dim==0)
+            {
+                MessageBox.Show("Non ci sono prodotti nella lista");
+            }
+            else if (String.IsNullOrEmpty(txt_elimina.Text))
             {
                 MessageBox.Show("Per continuare le modifiche devi inserire qualcosa nelle text box");
             }
@@ -349,6 +348,10 @@ namespace CRUDprodottiprezzo
         //ORDINAMENTO ALFABETICO
         private void bttn_OrdAlf_Click(object sender, EventArgs e)
         {
+            if (dim == 0)
+            {
+                MessageBox.Show("Non ci sono prodotti nella lista");
+            }
             //ordinamento BubbleSort che sfrutta la funzione CompareTo per confrontare i nomi dei prodotti
             for (int i = 0; i < dim; i++)
             {
@@ -370,23 +373,25 @@ namespace CRUDprodottiprezzo
             somma(p);
         }
         //SOMMA TOTALE DEI PRODOTTI
-        public float som;
         private void somma(Prodotto[]p)
         {
-            som = 0;
+            float som = 0;
 
             for (int i = 0; i < dim;i++)
             {
                 som += p[i].Prezzo;
             }
-
             lst_totEsconto.Items.Clear();
             lst_totEsconto.Items.Add("Prezzo totale:"+som);
         }
         //SOMMA DELLA PERCENTUALE
         private void sommaPerc_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txt_sconto.Text))
+            if (dim == 0)
+            {
+                MessageBox.Show("Non ci sono prodotti nella lista");
+            }
+            else if (String.IsNullOrEmpty(txt_sconto.Text))
             {
                 MessageBox.Show("Devi inserire un valore nelle text box");
             }
@@ -394,27 +399,28 @@ namespace CRUDprodottiprezzo
             {
                 int sconto;
                 sconto = int.Parse(txt_sconto.Text);
-
-               /* l++;
-
-                for(int i = 0; i < l;i++)
+                if (sconto < 0)
                 {
-                    scontiapplicati[i]= sconto;
+                    MessageBox.Show("Devi inserire un valore positivo");
                 }
-                */
-                for (int i = 0; i < dim; i++)
                 {
-                    p[i].Prezzo = p[i].Prezzo + (p[i].Prezzo / 100) * sconto;
+                    for (int i = 0; i < dim; i++)
+                    {
+                        p[i].Prezzo = p[i].Prezzo + (p[i].Prezzo / 100) * sconto;
+                    }
+                    somma(p);
+                    txt_sconto.Text = "";
                 }
-                somma(p);
-                txt_sconto.Text = "";
             }
-            
         }
         //SOTTRAZIONE DELLA PERCENTUALE
         private void bttn_sottraiPerc_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txt_sconto.Text))
+            if (dim == 0)
+            {
+                MessageBox.Show("Non ci sono prodotti nella lista");
+            }
+            else if (String.IsNullOrEmpty(txt_sconto.Text))
             {
                 MessageBox.Show("Devi inserire un valore nelle text box");
             }
@@ -423,78 +429,109 @@ namespace CRUDprodottiprezzo
                 int sconto;
                 sconto = int.Parse(txt_sconto.Text);
 
-                for (int i = 0; i < dim; i++)
+                if (sconto < 0)
                 {
-                    p[i].Prezzo = p[i].Prezzo - (p[i].Prezzo / 100) * sconto;
+                    MessageBox.Show("Devi inserire un valore positivo");
                 }
-                somma(p);
-                txt_sconto.Text = "";
+                {
+                    for (int i = 0; i < dim; i++)
+                    {
+                        p[i].Prezzo = p[i].Prezzo - (p[i].Prezzo / 100) * sconto;
+                    }
+                    somma(p);
+                    txt_sconto.Text = "";
+                }
+                
             }
         }
-       
-
-
         //NUMERO MASSIMO
         private void bttn_max_Click(object sender, EventArgs e)
         {
+            
 
-            float max = p[0].Prezzo;
-
-            for (int i = 0; i < dim; i++)
+            if (dim == 0)
             {
-                if (p[i].Prezzo > max)
-                {
-                    max = p[i].Prezzo;
-                }
+                MessageBox.Show("Non ci sono prodotti nella lista");
             }
-            txt_maxmin.Clear();
-            txt_maxmin.Text = max.ToString();
+            else
+            {
+                float max = p[0].Prezzo;
+                for (int i = 0; i < dim; i++)
+                    {
+                        if (p[i].Prezzo > max)
+                        {
+                             max = p[i].Prezzo;
+                        }
+                }
+                txt_maxmin.Clear();
+                txt_maxmin.Text = max.ToString();
+            }
+            
+            
             
         }
         //NUMERO MINIMO
         private void bttn_min_Click(object sender, EventArgs e)
         {
-            float min = p[0].Prezzo;
-
-            for (int i = 0; i < dim; i++)
+            if (dim == 0)
             {
-                if (p[i].Prezzo < min)
-                {
-                    min = p[i].Prezzo;
-                }
+                MessageBox.Show("Non ci sono prodotti nella lista");
             }
-            txt_maxmin.Clear();
-            txt_maxmin.Text = min.ToString();
+            else
+            {
+                float min = p[0].Prezzo;
+                for (int i = 0; i < dim; i++)
+                {
+                    if (p[i].Prezzo < min)
+                    {
+                        min = p[i].Prezzo;
+                    }
+                }
+                txt_maxmin.Clear();
+                txt_maxmin.Text = min.ToString();
+            }
+            
             
         }
 
         private void bttn_salva_Click(object sender, EventArgs e)
         {
-            StreamWriter sw = new StreamWriter(@"Lista.txt");
-
-            for(int i = 0; i < dim;i++)
+            if (dim == 0)
             {
-                sw.WriteLine(p[i].Nome+";"+ p[i].Prezzo);
+                MessageBox.Show("Non ci sono prodotti nella lista");
             }
+            else
+            {
+                StreamWriter sw = new StreamWriter(@"Lista.txt");
 
-            sw.Close();
+                for (int i = 0; i < dim; i++)
+                {
+                    sw.WriteLine(p[i].Nome + ";" + p[i].Prezzo);
+                }
+
+                sw.Close();
+            }
         }
 
         private void bttn_leggi_Click(object sender, EventArgs e)
         {
-            StreamReader sr = new StreamReader(@"ElencoProdotti.txt");
-
-            
-            string linea = sr.ReadToEnd();
-            string[] l = linea.Split();
-
-            for(int i = 0; i < l.Length; i++)
+            if (dim == 0)
             {
-                lst_visual.Items.Add(l[i]);
+                MessageBox.Show("Non ci sono prodotti nella lista");
             }
+            else
+            {
+                StreamReader sr = new StreamReader(@"ElencoProdotti.txt");
+                string linea = sr.ReadToEnd();
+                string[] l = linea.Split();
 
-            sr.Close();
+                for (int i = 0; i < l.Length; i++)
+                {
+                    lst_visual.Items.Add(l[i]);
+                }
 
+                sr.Close();
+            }
         }
     }
 }
