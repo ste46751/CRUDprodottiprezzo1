@@ -63,8 +63,9 @@ namespace CRUDprodottiprezzo
             bttn_min.Enabled = false;
             bttn_sottraiPerc.Enabled = false;
             bttn_sommaPerc.Enabled = false;
-            bttn_leggi.Enabled = false;
             bttn_salva.Enabled = false;
+
+            txt_maxmin.Enabled = false;
         }
         
         //PULSANTE AGGIUNGI, salva il nome del prodotto e il suo prezzo nella struct
@@ -103,7 +104,7 @@ namespace CRUDprodottiprezzo
                 bttn_min.Enabled = true;
                 bttn_sottraiPerc.Enabled = true;
                 bttn_sommaPerc.Enabled = true;
-                bttn_leggi.Enabled = true;
+                
                 bttn_salva.Enabled = true;
 
                 visualizza(p);
@@ -142,6 +143,7 @@ namespace CRUDprodottiprezzo
 
                 txt_prezzo.Enabled = false;
                 txt_nome.Enabled = false;
+                
 
                 bttn_aggiungi.Enabled = false;
                 bttn_annulla.Enabled = true;
@@ -466,9 +468,6 @@ namespace CRUDprodottiprezzo
                 txt_maxmin.Clear();
                 txt_maxmin.Text = max.ToString();
             }
-            
-            
-            
         }
         //NUMERO MINIMO
         private void bttn_min_Click(object sender, EventArgs e)
@@ -490,8 +489,6 @@ namespace CRUDprodottiprezzo
                 txt_maxmin.Clear();
                 txt_maxmin.Text = min.ToString();
             }
-            
-            
         }
 
         private void bttn_salva_Click(object sender, EventArgs e)
@@ -510,28 +507,25 @@ namespace CRUDprodottiprezzo
                 }
 
                 sw.Close();
+
+                MessageBox.Show("La lista dei prodotti è stata salvata nel file Lista");
             }
         }
 
         private void bttn_leggi_Click(object sender, EventArgs e)
-        {
-            if (dim == 0)
-            {
-                MessageBox.Show("Non ci sono prodotti nella lista");
-            }
-            else
-            {
-                StreamReader sr = new StreamReader(@"ElencoProdotti.txt");
-                string linea = sr.ReadToEnd();
-                string[] l = linea.Split();
 
-                for (int i = 0; i < l.Length; i++)
-                {
-                    lst_visual.Items.Add(l[i]);
-                }
+        {   
+            StreamReader sr = new StreamReader(@"ElencoProdotti.txt");
+            string linea = sr.ReadToEnd();
+            string[] l = linea.Split();
+            
 
-                sr.Close();
+            for (int i = 0; i < l.Length; i++)
+            {
+                lst_visual.Items.Add(l[i]);
             }
+            sr.Close();
+            
         }
     }
 }
