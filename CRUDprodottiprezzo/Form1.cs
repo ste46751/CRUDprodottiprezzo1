@@ -64,6 +64,7 @@ namespace CRUDprodottiprezzo
             bttn_sottraiPerc.Enabled = false;
             bttn_sommaPerc.Enabled = false;
             bttn_salva.Enabled = false;
+            bttn_salva.Enabled = false;
 
             txt_maxmin.Enabled = false;
         }
@@ -104,7 +105,7 @@ namespace CRUDprodottiprezzo
                 bttn_min.Enabled = true;
                 bttn_sottraiPerc.Enabled = true;
                 bttn_sommaPerc.Enabled = true;
-                
+                bttn_leggi.Enabled = true;
                 bttn_salva.Enabled = true;
 
                 visualizza(p);
@@ -126,11 +127,12 @@ namespace CRUDprodottiprezzo
                 lst_visual.Items.Add(prodString(p[i]));
             }
         }
-        //PULSANTE MODIFICA, rende utilizzabili gli strumenti per la modifica
+        //PULSANTE MODIFICA
         private void bttn_modifica_Click(object sender, EventArgs e)
         {
             if(dim>0)
             {
+                //attivazione strumenti di modifica
                 txt_modprezzo.Enabled = true;
                 lbl_modprezzo.Enabled = true;
                 txt_modnome.Enabled = true;
@@ -140,13 +142,21 @@ namespace CRUDprodottiprezzo
 
                 bttn_confermamod.Enabled = true;
                 bttn_cerca.Enabled = true;
+                bttn_annulla.Enabled = true;
 
+                //disattivo tutto ciò che non centra con la modifica
+                bttn_OrdAlf.Enabled = false;
+                bttn_max.Enabled = false;
+                bttn_min.Enabled = false;
+                bttn_sottraiPerc.Enabled = false;
+                bttn_sommaPerc.Enabled = false;
+                bttn_salva.Enabled = false;
+                bttn_leggi.Enabled = false;
+                bttn_aggiungi.Enabled = false;
+                bttn_elimina.Enabled = false;
+                
                 txt_prezzo.Enabled = false;
                 txt_nome.Enabled = false;
-                
-
-                bttn_aggiungi.Enabled = false;
-                bttn_annulla.Enabled = true;
             }
             else
             {
@@ -164,17 +174,11 @@ namespace CRUDprodottiprezzo
             }
             else
             {
-                bool esiste = false;
-
                 //ciclo for per cercare il prodotto e stampare l'attuale nome e prezzo
                 for (int i = 0; i < dim; i++)
                 {
                     //controllo dell'esistenza del prodotto nella lista
                     if (prodottomod == p[i].Nome)
-                    {
-                        esiste= true;
-                    }
-                    if (esiste == true)
                     {
                         txt_modnome.Text = p[i].Nome;
                         txt_modprezzo.Text = (p[i].Prezzo).ToString();
@@ -182,11 +186,7 @@ namespace CRUDprodottiprezzo
                         txt_prodottomod.Enabled = false;
                     }
                 }
-                //se non presente messaggio a schermo
-                if(esiste==false)
-                {
-                    MessageBox.Show("Non esiste un prodotto con questo nome.\nContolla di aver scritto il nome correttamente");
-                }
+                
             }
         }
         //PULSANTE CONFERMA, una volta premuto salva il contenuto delle celle e lo sovrascrive sui vecchi contenuti
@@ -224,23 +224,35 @@ namespace CRUDprodottiprezzo
                 txt_modprezzo.Text = ("");
                 txt_prodottomod.Text = "";
 
-                //Riabilitazione di pulsanti e disabilitazione degli oggetti dedicati alla modifica
+                //disabilitazione degli strumenti dedicati alla modifica
                 txt_modprezzo.Enabled = false;
                 lbl_modprezzo.Enabled = false;
                 txt_modnome.Enabled = false;
                 lbl_modnome.Enabled = false;
                 txt_prodottomod.Enabled = false;
                 lbl_vecchio.Enabled = false;
-                txt_prezzo.Enabled = true;
-                txt_nome.Enabled = true;
+                
                 txt_prodottomod.Enabled = false;
 
                 bttn_annulla.Enabled = false;
                 bttn_confermamod.Enabled = false;
                 bttn_cerca.Enabled = false;
+                
+                //riabilitazione delle altre funzioni
+                bttn_OrdAlf.Enabled = true;
+                bttn_max.Enabled = true;
+                bttn_min.Enabled = true;
+                bttn_sottraiPerc.Enabled = true;
+                bttn_sommaPerc.Enabled = true;
+                bttn_salva.Enabled = true;
+                bttn_leggi.Enabled = true;
                 bttn_aggiungi.Enabled = true;
+                bttn_elimina.Enabled = true;
                 
-                
+                txt_prezzo.Enabled = true;
+                txt_nome.Enabled = true;
+
+
             }
             visualizza(p);
             somma(p);
@@ -253,6 +265,20 @@ namespace CRUDprodottiprezzo
 
             bttn_confermaelimina.Enabled = true;
             bttn_annulla.Enabled = true;
+
+            //disattivo tutto ciò che non centra con la modifica
+            bttn_OrdAlf.Enabled = false;
+            bttn_max.Enabled = false;
+            bttn_min.Enabled = false;
+            bttn_sottraiPerc.Enabled = false;
+            bttn_sommaPerc.Enabled = false;
+            bttn_salva.Enabled = false;
+            bttn_leggi.Enabled = false;
+            bttn_aggiungi.Enabled = false;
+            bttn_elimina.Enabled = false;
+
+            txt_prezzo.Enabled = false;
+            txt_nome.Enabled = false;
         }
         //PULSANTE CONFERMA ELIMINAZIONE
         private void bttn_confermaelimina_Click(object sender, EventArgs e)
@@ -305,6 +331,20 @@ namespace CRUDprodottiprezzo
                             txt_elimina.Enabled = false;
                             bttn_confermaelimina.Enabled = false;
                             bttn_annulla.Enabled = false;
+
+                            //riabilitazione delle altre funzioni
+                            bttn_OrdAlf.Enabled = true;
+                            bttn_max.Enabled = true;
+                            bttn_min.Enabled = true;
+                            bttn_sottraiPerc.Enabled = true;
+                            bttn_sommaPerc.Enabled = true;
+                            bttn_salva.Enabled = true;
+                            bttn_salva.Enabled = true;
+                            bttn_aggiungi.Enabled = true;
+                            bttn_elimina.Enabled = true;
+
+                            txt_prezzo.Enabled = true;
+                            txt_nome.Enabled = true;
                         }
                     }
                 }
@@ -515,7 +555,8 @@ namespace CRUDprodottiprezzo
         private void bttn_leggi_Click(object sender, EventArgs e)
 
         {   
-            StreamReader sr = new StreamReader(@"ElencoProdotti.txt");
+            lst_visual.Items.Clear();
+            StreamReader sr = new StreamReader(@"Lista.txt");
             string linea = sr.ReadToEnd();
             string[] l = linea.Split();
             
